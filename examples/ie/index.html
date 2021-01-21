@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IE</title>
+</head>
+<body>
+    <div class="inner">
+        ... 내용 ...
+        <div class="list-inner"></div>
+    </div>
+    <script src="/dist/build.min.js"></script>
+    <script>
+        tr.DetectIE({
+            callbacks: function(browser, version){
+                let template = '';
+                    template += '<div class="result_inner">';
+                    template += '<h2 class="tit">저희 사이트는 '+browser+''+version+'을 지원하지 않습니다.</h2>';
+                    template += '<h2 class="tit">크롬 브라우저에 최적화 되어 있습니다.</h2>';
+                    template += '<a class="result_button" href="https://www.google.com/intl/ko/chrome/">크롬브라우저 다운받기</a>';
+                    template += '</div>';
+                    document.querySelector('.list-inner').innerHTML = template;
+            }
+        });
+    </script>
+</body>
+</html>

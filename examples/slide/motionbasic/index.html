@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <article class="bee3D--parent bee3D--effect__coverflow"> 
+        <section class="bee3D--slide bee3D--slide__inactive"> 
+            <div class="bee3D--inner"> 
+                <p class="demo-text ">1</p> 
+            </div> 
+        </section>
+        <section class="bee3D--slide bee3D--slide__inactive"> 
+            <div class="bee3D--inner"> 
+                <p class="demo-text ">2</p> 
+            </div> 
+        </section>
+        <section class="bee3D--slide bee3D--slide__inactive">
+            <div class="bee3D--inner"> 
+                <p class="demo-text ">3</p> 
+            </div> 
+        </section>
+        <section class="bee3D--slide bee3D--slide__inactive">
+            <div class="bee3D--inner"> 
+                <p class="demo-text ">4</p> 
+            </div> 
+        </section>
+        <section class="bee3D--slide bee3D--slide__inactive">
+            <div class="bee3D--inner"> 
+                <p class="demo-text ">5</p> 
+            </div> 
+        </section>
+    </article>
+
+    <div class="dnkenkn">
+        <div class="dknskf"></div>
+    </div>
+
+    <div> 
+        <span class="bee3D--nav bee3D--nav__prev"> 이전 </span> 
+        <span class="bee3D--nav bee3D--nav__next"> 다음 </span> 
+    </div>
+
+    <script src="/dist/build.min.js"></script>
+    <script>
+        (function() {
+            console.log(tr)
+            new tr.MotionBasic({
+                targets: '.bee3D--slide',
+                addClassNames: { 
+                    addClass:'bee3D--slide__active',
+                    addSiblings: [
+                        {listBefore: 'bee3D--before'},
+                        {listAfter: 'bee3D--after'}
+                    ]
+                },
+                navigation: {
+                    prevEl: '.bee3D--nav__prev',
+                    nextEl: '.bee3D--nav__next'
+                }
+            })
+        })();
+    </script>
+</body>
+</html>

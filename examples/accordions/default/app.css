@@ -1,0 +1,92 @@
+@import "../../../src/css/base/reset.css";
+
+.component { 
+    max-width: 1000px;
+    padding-right: 30px;
+    padding-left: 30px;
+    margin: 70px auto 0 auto;
+}
+
+.component .inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+ }
+ .component .inner .item {
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1), inset 0 0 0 0 rgba(0,0,0,.15);
+    box-shadow: 0 1px 2px rgba(0,0,0,.1), inset 0 0 0 0 rgba(0,0,0,.15);
+    border: 1px solid #f3f4f6;
+    -webkit-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all 1s ease-in-out;
+ }
+ .component .inner .item:hover {
+    -webkit-box-shadow: -3px 10px 50px rgba(0,0,0,.1), inset 0 0 0 0 rgba(0,0,0,.15);
+    box-shadow: -3px 10px 50px rgba(0,0,0,.1), inset 0 0 0 0 rgba(0,0,0,.15);
+ }
+
+ .component .inner .item.active .tit{ border-left: 2px solid #0d0f33;}
+ .component .inner .item.active .tit::after { transform: rotate(-45deg) translateZ(0); }
+
+ .accordion_tit {
+    font-weight: 500;
+    border-left: 2px solid #f0f2f5;
+    padding: 20px 40px 20px 20px;
+    margin: 0;
+    cursor: pointer;
+    font-size: 17px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -moz-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    position: relative;
+    -webkit-transition: .2s;
+    -o-transition: .2s;
+    transition: .2s;
+ }
+ .accordion_tit:hover { border-left: 2px solid #0d0f33; }
+ .accordion_tit::after {
+    content: '';
+    width: 15px;
+    height: 15px;
+    background-size: 18px;
+    position: absolute;
+    top: 23px;
+    right: 15px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+ }
+ .item.active .faq_item_content{
+   max-height: 100vh;
+   transition: max-height 3s; /*활성화 시킬때의 타이밍*/
+ }
+ .faq_item_content {
+    line-height: 1.1;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s; /*활성화 시킬때의 타이밍*/
+ }
+
+ .faq_item_content p {
+    border-top: 2px solid #f0f2f5;
+    padding: 20px;
+ }
+
+ .btn a{
+    width: 100%;
+   text-align: center;
+   margin-top: 30px;
+   padding: 20px 40px 20px 20px;
+   box-sizing: border-box;
+   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1), inset 0 0 0 0 rgba(0,0,0,.15);
+   box-shadow: 0 1px 2px rgba(0,0,0,.1), inset 0 0 0 0 rgba(0,0,0,.15);
+   border: 1px solid #f3f4f6;
+ }
+ .more_active {display: none;}

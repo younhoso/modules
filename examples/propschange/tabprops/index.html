@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChangeTabProps</title>
+    <style>
+        .img_js {width: 30%;}
+    </style>
+</head>
+<body>
+    <div>
+        <img class="img_js" src="./imgs/Group2.png" alt="">
+        <img class="img_js" src="./imgs/Group2.png" alt="">
+        <img class="img_js" src="./imgs/Group2.png" alt="">
+    </div>
+    
+    <script src="/dist/build.min.js"></script>
+    <script>
+        (function() {
+            console.log(tr)
+            /** 
+             * DOM의 속성들을 쉡고 간단하게 Click 이벤트를 통해서 나머지들을 변경할수 있습니다.
+             * The properties of the DOM can be read and changed simply through the Click event.
+             */
+            new tr.ChangeTabProps({
+                targets: '.img_js',           // 속성을 Change 하고자 하는 DOM.
+                prop : 'src',                 // 속성들중에 원하는 속성 이름.
+                value: './imgs/Group1.png',   // 바꾸고 싶어하는 값을 넣으세요.
+                firstItemActive: true               // 첫번째 아이템을 활성화 할건지 여부체크
+            });
+        })();
+    </script>
+</body>
+</html>

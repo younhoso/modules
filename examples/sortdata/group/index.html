@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="/dist/build.min.css">
+    <link type="text/css" rel="stylesheet" href="./app.css">
+    <title>데이터들을 group해서 배열에 담는것 화면에 뿌리기</title>
+</head>
+<body>
+    <ul class="list-inner"></ul>
+
+    <ul class="list-inner2"></ul>
+
+    <script src="/dist/build.min.js"></script>
+    <script>
+         (function() {
+            const people = [
+                { id: 1, name: 'iroMan', actor: '로버트 다우니 주니어', alias: '아이어맨', age: 40 },
+                { id: 2, name: 'Jane', actor:'toto', alias: 'dddd', age: 21 },
+                { id: 3, name: 'Jane2', actor:'toto2', alias: 'dddd2', age: 21 },
+                { id: 4, name: 'captainAmerica', actor:'크리스 에반스1', alias: '캡틴 아메리카', age: 40 },
+                { id: 5, name: 'captainAmerica', actor:'크리스 에반스2', alias: '캡틴', age: 40 }
+            ];
+
+            const age = tr.dataGroups(people, 'age', {group: true}) // age라는 키의 기준으로 그룹핑을 한다.
+            console.log(age)
+
+            const tamplate = ((props) => {
+                const {name, actor, alias} = props;
+                return `
+                    <li>
+                        <div>${name}</div>
+                        <div>${actor}</div>
+                        <div>${alias}</div>
+                    </li>
+                `
+            });
+
+            age[40].forEach(element => { // age라는 값중에 40이라는 것 안에 배열로 구룹핑되어 있다. 그것들을 forEach로 가져와 화면에 뿌린다.
+                document.querySelector('.list-inner').innerHTML += tamplate(element)
+            });
+            age[21].forEach(element => { // age라는 값중에 21이라는 것 안에 배열로 구룹핑되어 있다. 그것들을 forEach로 가져와 화면에 뿌린다.
+                document.querySelector('.list-inner2').innerHTML += tamplate(element)
+            });
+        })();
+    </script>
+</body>
+</html>

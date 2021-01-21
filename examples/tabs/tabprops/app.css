@@ -1,0 +1,9 @@
+@import "../../../src/css/base/reset.css";
+
+.wrapper {width: 1200px; margin: 0 auto;}
+h1 {font-size: 40px;}
+
+.tabs {width: 1200px; margin: 0 auto;}
+.tabs ul {display: flex; }
+.tabs img {width: 100%;}
+

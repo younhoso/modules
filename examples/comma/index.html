@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/dist/build.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>comma</title>
+</head>
+<body>
+    <div class="content">
+        <div class="l_wrapper">
+            <ul class="list-inner">
+                <li class="list">
+                    <div> 총 주문 금액 </div>
+                    <div> 총 배송비 </div>
+                    <div> 총 결제금액 </div>
+                </li>
+                <li class="list bor">
+                    <div class="js-item"> 0원 </div>
+                    <div class="js-show"> 0원 </div>
+                    <div class="js-total"> 0원 </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tka-inner">
+        <input class="tka tka1" type="text" placeholder="총 주문 금액">
+        <input class="tka tka2" type="text" placeholder="총 배송비">
+        <a href="#0" class="btn">총 결제금액</a>
+    </div>
+
+    <script src="/dist/build.min.js"></script>
+    <script>
+        (function() {
+            console.log(tr)
+            const btn = document.querySelector('.btn');
+
+            const item = document.querySelector('.js-item');
+            const show = document.querySelector('.js-show');
+            const total = document.querySelector('.js-total');
+
+            const values1 = document.querySelector('.tka1');
+            const values2 = document.querySelector('.tka2');
+
+            const app = document.querySelector('.app');
+            
+            btn.addEventListener('click', function(){
+                item.innerHTML = tr.comma( Number( values1.value) + '원' )
+                show.innerHTML = tr.comma( Number( values2.value) + '원' )
+                total.innerHTML = tr.comma(Number( values1.value) + Number( values2.value) + '원')
+            });
+            
+        })();
+    </script>
+</body>
+</html>

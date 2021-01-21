@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="/dist/build.min.css">
+    <link type="text/css" rel="stylesheet" href="./app.css">
+    <title>여러가지 배열로된 data들을 하나의 배열로 통합</title>
+</head>
+<body>
+    <ul class="list-inner"></ul>
+
+    <ul class="list-inner2"></ul>
+
+    <script src="/dist/build.min.js"></script>
+    <script>
+         (function() {
+            const people = [ ['iPhone','iMac','macbook'], ['coke','diet coke'], ['americano','latte', 'tea2'] ];
+            const arr3 = [ ['IPhone'], ['Coke'], ['Diet Coke'], ['Americano','Latte', 'Tea3'] ];
+
+            // ((주의) 원본 배열의 데이터가 첫글자에서 대문자, 소문자를 통일 시켜줘야 내림차순 기능이 됩니다.)
+            const peoples = tr.dataArray(people) //dataArray는 여러가지 배열로된 data들을 하나의 배열로 통합시켜 내림차순으로 반환 해줍니다.
+            const arr3s = tr.dataArray(arr3)
+
+            console.log(peoples)
+            console.log(arr3s)
+        })();
+    </script>
+</body>
+</html>

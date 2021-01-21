@@ -1,0 +1,57 @@
+
+/* =====================================
+              FORM RESET
+===================================== */
+/*input 기본 스타일 초기화*/
+input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border: 0;
+    font-family: inherit;
+  }
+  
+  /*IE10 이상에서 input box 에 추가된 지우기 버튼 제거*/
+  input::-ms-clear {display: none;}
+  
+  /*input type number 에서 화살표 제거*/
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border: 0;
+    border-radius: 0;
+    font-family: inherit;
+  }
+  
+  /*IE 에서 Select box 화살표 제거*/
+  select::-ms-expand {display: none;}
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  input[type='number'] {-moz-appearance: textfield;}
+  button {
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    line-height: 1;
+    background: none;
+    font-family: inherit;
+  }
+  ::-webkit-file-upload-button {cursor: pointer;}
+  ::-webkit-scrollbar {display: none;}
+  .material-icons {vertical-align: middle;}

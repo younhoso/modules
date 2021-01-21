@@ -1,0 +1,61 @@
+@import "../../src/css/base/reset.css";
+
+.faq_component { 
+    max-width: 1000px;
+    padding-right: 30px;
+    padding-left: 30px;
+    margin: 70px auto 0 auto;
+}
+.faq_component h2 {
+    margin: 0 0 30px;
+    font-size: 26px;
+    font-weight: 600;
+}
+.faq_component .faq_inner {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    transition: all 0.4s;
+ }
+ .faq_component .faq_inner.active {
+    flex-direction: row;
+ }
+ .faq_component .faq_inner .faq_item {
+     margin-bottom: 20px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2), inset 0 0 0 0 rgba(0,0,0,.15);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2), inset 0 0 0 0 rgba(0,0,0,.15);
+    border: 1px solid #f3f4f6;
+    -webkit-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
+ }
+ .faq_component .faq_inner.active .faq_item{
+    flex: 1 1 40%;
+    flex-grow: 1;
+ }
+ .faq_component .faq_inner.active .faq_item:nth-child(2n){margin-left: 20px;}
+ .faq_component .faq_inner .faq_item:hover {
+    -webkit-box-shadow: -3px 10px 50px rgba(0,0,0,.1), inset 0 0 0 0 rgba(0,0,0,.15);
+    box-shadow: -3px 10px 50px rgba(0,0,0,.1), inset 0 0 0 0 rgba(0,0,0,.15);
+ }
+
+
+ .faq_tit {
+    font-weight: 500;
+    border-left: 2px solid #f0f2f5;
+    padding: 20px 40px 20px 20px;
+    margin: 0;
+    cursor: pointer;
+    font-size: 17px;
+ }
+
+ .btn a{
+    width: 100%;
+   text-align: center;
+   margin-top: 30px;
+   padding: 20px 40px 20px 20px;
+   box-sizing: border-box;
+   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1), inset 0 0 0 0 rgba(0,0,0,.15);
+   box-shadow: 0 1px 2px rgba(0,0,0,.1), inset 0 0 0 0 rgba(0,0,0,.15);
+   border: 1px solid #f3f4f6;
+ }

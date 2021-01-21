@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./app.css">
+    <title>tabprops</title>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>tabprops</h1>
+        <div class="tabs triple_tabs">
+            <ul>
+                <li class="tab tab_js">
+                    <img class="img_js" src="./imgs/Group2.png">
+                </li>
+                <li class="tab tab_js">
+                    <img class="img_js" src="./imgs/Group2.png">
+                </li>
+                <li class="tab tab_js">
+                    <img class="img_js" src="./imgs/Group2.png">
+                </li>
+                <li class="tab tab_js">
+                    <img class="img_js" src="./imgs/Group2.png">
+                </li>
+                <li class="tab tab_js">
+                    <img class="img_js" src="./imgs/Group2.png">
+                </li>
+                <li class="tab tab_js">
+                    <img class="img_js" src="./imgs/Group2.png">
+                </li>
+            </ul>
+        </div>
+    </div>
+ 
+    <script src="/dist/build.min.js"></script>
+    <script>
+        /**
+            triplelab의 자원과, jquery의 자원을 이용해서 쉽고, 빠르게 UI를 완성할수 있습니다.
+            You can easily and quickly complete UI by using triplelab resources and jquery resources. 
+        */
+       (function(){
+            const my = new tr.Tabs({
+                targets: '.tab_js',
+                addClassName: 'actives',      // 넣고 싶은 클랙스 명
+                firstItemActive: true,        // 첫번째 아이템을 활성화 할건지 여부체크 true or false
+                addChild: {
+                    findTargets : 'img',
+                    prop : 'src',                 // 속성들중에 원하는 속성 이름.
+                    unactiveValue: './imgs/Group2.png',    // 비황성화 경로 넣으세요.
+                    activeValue: './imgs/Group1.png'   // 활성화 하고싶은 경로 넣으세요.
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

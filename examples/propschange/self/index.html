@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="https://triplelab.synology.me/cdn/build.css">
+    <title>Document</title>
+    <style>
+        .img_js {width: 30%;}
+        .img_js2 {width: 30%;}
+        .img_js3 {width: 30%;}
+    </style>
+</head>
+<body>
+    <img class="img_js" src="./imgs/Group2.png" alt="이미지" name="ket">
+    <img class="img_js2" src="./imgs/Group2.png" alt="이미지" name="ket">
+    <img class="img_js3" src="./imgs/Group2.png" alt="이미지" name="ket">
+
+    <script src="/dist/build.min.js"></script>
+    <script>
+        (function() {
+            console.log(tr)
+            /** 
+             * DOM의 속성들을 쉡고 간단하게 Click 이벤트를 통해서 자기 자신을 변경할수 있습니다.
+             * You can change yourself through the DOM properties and simply click events.
+             */
+            new tr.ChangeSelfProps({
+                targets: '.img_js',     // 속성을 Change 하고자 하는 DOM.
+                prop : 'src',           // 속성들중에 원하는 속성 이름.
+                value: './imgs/Group1.png'   // 바꾸고 싶어하는 값을 넣으세요.
+            });
+            new tr.ChangeSelfProps({
+                targets: '.img_js2',     // 속성을 Change 하고자 하는 DOM.
+                prop : 'src',           // 속성들중에 원하는 속성 이름.
+                value: './imgs/Group1.png'   // 바꾸고 싶어하는 값을 넣으세요.
+            });
+            new tr.ChangeSelfProps({
+                targets: '.img_js3',     // 속성을 Change 하고자 하는 DOM.
+                prop : 'src',           // 속성들중에 원하는 속성 이름.
+                value: './imgs/Group1.png'   // 바꾸고 싶어하는 값을 넣으세요.
+            });
+        })();
+    </script>
+</body>
+</html>

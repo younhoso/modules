@@ -1,0 +1,12 @@
+@import "../../../src/css/base/reset.css";
+
+.wrapper {width: 1200px; margin: 0 auto;}
+h1 {font-size: 40px;}
+
+.tabs {margin-top: 40px;}
+.tabs .line {width: 100%; height: 5px; display: block; margin-top: 20px; background-color: dimgray; position: relative;}
+.tabs .line_item {height: 100%; display: block; background-color: #09f; position: absolute; top: 0; left: 0;}
+.tabs ul {display: flex; justify-content: space-between; }
+.tabs ul .tab{ width: 100%; text-align: center; box-sizing: border-box; font-size: 30px; cursor: pointer; transition: all 0.2s cubic-bezier(0.29, -0.52, 0.99, 1.91);}
+.tabs ul .tab.actives { color: #09f;};
+

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Grid</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="faq_component">
+        <h2>Dynamic Grid</h2>
+        <span class="btn">
+            <img class="changeSrc" src="./img/view_list_black.png" alt="아이콘">
+        </span>
+
+      
+        <ul class="faq_inner">
+            <li class="faq_item">
+                <h3 class="faq_tit">1How do I set up semantic completion?</h3>
+            </li>
+            <li class="faq_item">
+                <h3 class="faq_tit">2How do I set up semantic completion?</h3>
+            </li>
+            <li class="faq_item">
+                <h3 class="faq_tit">3How do I set up semantic completion?</h3>
+            </li> 
+            <li class="faq_item">
+                <h3 class="faq_tit">4How do I set up semantic completion?</h3>
+            </li> 
+            <li class="faq_item">
+                <h3 class="faq_tit">5How do I set up semantic completion?</h3>
+            </li> 
+            <li class="faq_item">
+                <h3 class="faq_tit">6How do I set up semantic completion?</h3>
+            </li> 
+        </ul>
+    </div>
+    
+    <script src="/dist/build.min.js"></script>
+    <script>
+    (function() {
+
+        new tr.ToggleDynamic({
+            targets: {
+                startEl: '.faq_inner',
+                endEl: '.faq_item',
+                eventEl: '.btn',
+            },
+            addClassName: 'active'
+        });
+
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="contents">
+        <ul class="faq_inner">
+            <li class="faq_item">
+                <h3 class="faq_tit">1How do I set up semantic completion?</h3>
+            </li>
+            <li class="faq_item">
+                <h3 class="faq_tit">2How do I set up semantic completion?</h3>
+            </li>
+            <li class="faq_item">
+                <h3 class="faq_tit">3How do I set up semantic completion?</h3>
+            </li> 
+            <li class="faq_item">
+                <h3 class="faq_tit">4How do I set up semantic completion?</h3>
+            </li> 
+            <li class="faq_item">
+                <h3 class="faq_tit">5How do I set up semantic completion?</h3>
+            </li> 
+            <li class="faq_item">
+                <h3 class="faq_tit">6How do I set up semantic completion?</h3>
+            </li> 
+        </ul>
+    </div>
+
+    <button class="btn">popup</button>
+    
+    <script src="/dist/build.min.js"></script>
+    <script>
+        (function() {
+            new tr.ToggleDynamic({
+                targets: {
+                    startEl: '.faq_inner',
+                    endEl: '.faq_item',
+                    eventEl: '.btn',
+                },
+                addClassName: 'active'
+            })
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+.accordion_tit {
+    background-color: #eee;
+    padding: 18px;
+    color: #444;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: 0;
+    font-size: 15px;
+    transition: .4s
+}
+
+.accordion_tit:hover {
+    background-color: #ccc
+}
+
+.accordion_inner {
+    max-height: 0;
+    background-color: #fff;
+    overflow: hidden
+}
+
+.accordion_txt {
+    margin: 18px
+}
