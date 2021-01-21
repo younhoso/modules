@@ -3,16 +3,27 @@ import Actives from '../Helpers/index.js'
 
 export default class Tabs extends Actives {
     /**
-     * @param {}
+     * @param {Options} object
+     * @example
+     * const my = new tr.Tabs({
+            targets: '.tab_js',
+            addClassName: 'actives',      // 넣고 싶은 클랙스 명
+            firstItemActive: true,        // 첫번째 아이템을 활성화 할건지 여부체크 true or false
+            addChild: {
+                findTargets : 'img',
+                prop : 'src',                 // 속성들중에 원하는 속성 이름.
+                unactiveValue: './imgs/Group2.png',    // 비황성화 경로 넣으세요.
+                activeValue: './imgs/Group1.png'   // 활성화 하고싶은 경로 넣으세요.
+            }
+        });
      */
-    constructor(el, current) {
-        super(el, current);
+    constructor(el) {
+        super(el);
         this.store = {idx: null, target: null, addClassName: null, PrevValue: null};
         this.initHandler();
     };
     ValueChang (self) {
         const { findTargets, prop, unactiveValue, activeValue} = this.el.addChild;
-
         _tr(self).find(findTargets).attr(prop, activeValue); //속성 활성화    
         _tr(self).siblings().find(findTargets).attr(prop, unactiveValue); //속성 이전 활성화
     }

@@ -1,7 +1,7 @@
 
 /**
  * 3번째 자리애 자동으로 ,쉼표를 넣어서 반환해줍니다.
- * @param {value} 숫자 값
+ * @param {value | number} 숫자 값
  * @example 
  * tr.comma( Number(100000) + '원' )
  */
@@ -23,7 +23,7 @@ export const unComma = (el) => { // 숫자를 받아서,
 /**
  * object(JSON)의 키 기준으로 그룹핑을 하여, 하나의 object를 반환해줍니다. 
  * @param {objectName} target 
- * @param {objectKey|string} property 
+ * @param {objectKey | string} property 
  * @param {boolean} props
  * @example 
  * tr.dataGroups(people, 'age', {group: true}) // age라는 키의 기준으로 그룹핑을 한다.

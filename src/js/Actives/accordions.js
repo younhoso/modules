@@ -1,4 +1,5 @@
-import {_tr} from '../Helpers/DomApi.js'
+import {_tr} from '../Helpers/DomApi.js';
+// import  from '../Helpers/DomApi.js'
 import Actives from '../Helpers/index.js'
 
 export default class Accordions extends Actives {
@@ -6,10 +7,10 @@ export default class Accordions extends Actives {
         * @param {Options} object
         * @example
         * new tr.Accordions ({
-                targets: '.item',
-                event: 'click',          // 이벤트 mouseenter와, click 2가지를 옵션으로 넣을수 있습니다.
-                addClassName: 'active',  // 넣고 싶은 클랙스 명
-                firstItemActive: true,   // 첫번째 아이템을 활성화 할건지 여부체크 true or false
+            targets: '.item',
+            event: 'click',                 // 이벤트 mouseenter와, click 2가지를 옵션으로 넣을수 있습니다.
+            addClassName: 'active',         // 넣고 싶은 클랙스 명
+            firstItemActive: true,          // 첫번째 아이템을 활성화 할건지 여부체크 true or false 
         });
     */
     constructor(el) {

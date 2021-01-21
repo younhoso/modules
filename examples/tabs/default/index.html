@@ -31,20 +31,20 @@
             You can easily and quickly complete UI by using triplelab resources and jquery resources. 
         */
        (function(){
-           console.log(tr)
-            // const my = new tr.Tabs({
-            //     targets: '.tab_js',
-            //     addClassName: 'actives',      // 넣고 싶은 클랙스 명
-            //     firstItemActive: true        // 첫번째 아이템을 활성화 할건지 여부체크 true or false
-            // });
+            console.log(tr)
+            const my = new tr.Tabs({
+                targets: '.tab_js',
+                addClassName: 'actives',      // 넣고 싶은 클랙스 명
+                firstItemActive: true        // 첫번째 아이템을 활성화 할건지 여부체크 true or false
+            });
 
-            // $(function() {
-            //     $('.line_item').css({width: $('.tab').outerWidth()});
-            //     $('.tab').on('click', function() {
-            //         console.log(my.store.idx) // endEl의 (자기 자신을 클릭)한 인텍스 값을 가져올수 있습니다.
-            //         $('.line_item').animate({left: $(this).outerWidth() * my.store.idx}, 250);
-            //     });
-            // }); 
+            $(function() {
+                $('.line_item').css({width: $('.tab').outerWidth()});
+                $('.tab').on('click', function() {
+                    console.log(my.store.idx) // endEl의 (자기 자신을 클릭)한 인텍스 값을 가져올수 있습니다.
+                    $('.line_item').animate({left: $(this).outerWidth() * my.store.idx}, 250);
+                });
+            }); 
         })();
     </script>
 </body>
