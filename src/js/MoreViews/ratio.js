@@ -26,8 +26,7 @@ export default class Ratio extends Moreview {
             eventE.innerHTML = template(0, 1, this.store.totalNum)
         }else if(this.store.remainder < additems ){ // additems의 개수보다 아이템의 개수가 작을 경우
             eventE.innerHTML = template(0, 1, this.store.totalNum + 1)
-        }
-        
+        }  
     };
 
     activeRatio(item) {

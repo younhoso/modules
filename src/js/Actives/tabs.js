@@ -3,7 +3,8 @@ import Actives from '../Helpers/index.js'
 
 export default class Tabs extends Actives {
     /**
-     * @param {Options} object
+     * @type {object}
+     * @param {Options}
      * @example
      * const my = new tr.Tabs({
             targets: '.tab_js',
@@ -22,11 +23,18 @@ export default class Tabs extends Actives {
         this.store = {idx: null, target: null, addClassName: null, PrevValue: null};
         this.initHandler();
     };
+    /**
+     * 특정 엘리먼트 속성 값을 바꿔주는 메소드
+     * @param {HTMLElement} this event handler.
+     */
     ValueChang (self) {
         const { findTargets, prop, unactiveValue, activeValue} = this.el.addChild;
         _tr(self).find(findTargets).attr(prop, activeValue); //속성 활성화    
         _tr(self).siblings().find(findTargets).attr(prop, unactiveValue); //속성 이전 활성화
     }
+    /**
+     * 특정 조건에만 실행하는 메소드
+     */
     initHandler() {
         const { targets, addClassName, firstItemActive } = this.el;
         this.store.target = _tr(targets);

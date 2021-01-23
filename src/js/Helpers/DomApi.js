@@ -3,7 +3,7 @@ import $ from 'domtastic';
 class DomApi extends $.BaseClass {
     /**
      * DomApi class
-     * @param {HTMLElement|string} container - 컨테이너 요소 또는 선택자
+     * @param {HTMLElement} container - 컨테이너 요소 또는 선택자
      * @example
      * _tr(HTMLElement) 라는 함수로 특정 엘리먼트를 선택합니다.
     */

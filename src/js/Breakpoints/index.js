@@ -1,4 +1,16 @@
 export default class BreakPoints {
+    /**
+     * @type {object}
+     * @param {Options}
+     * @example
+     * const my = new tr.BreakPoints({
+            screens: {
+                'mobile': 320,
+                'tablet': 768,
+                'desktop': 1024
+            }
+        });
+     */
     constructor(el) {
         this.el = el;
         this.store = {mobile: null, tablet: null, desktop: null}
