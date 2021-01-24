@@ -11,7 +11,15 @@ export default class Motion extends Swiper {
      * @param {Options}
      * @example
      * new tr.Motion('.swiper-container', {
-     *  pagination: {
+     *  speed: 400,
+        loop: true,
+        flipEffect: {
+            rotate: 30,
+            slideShadows: false,
+        },
+        
+        // 페이지 매김이 필요한 경우
+        pagination: {
             el: '.swiper-pagination',
             clickable: true,
             dotcircle: true,
@@ -19,13 +27,19 @@ export default class Motion extends Swiper {
             strokeColor : '#007aff',
             dotColor : '#000'
         },
+
+        // 탐색 화살표
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        }
      * });
      */
     constructor(el, ops) {
         super(el, ops);
         this.el = el;
         this.passedParams = ops;
-        this.store = {dotEle: null}
+        this.store = {ele: null, slideEle: null, dotEle: null}
         this.current = null;
         this.#initMotion();
     };
@@ -34,7 +48,9 @@ export default class Motion extends Swiper {
      */
     #initMotion() {
         const {pagination} = this.passedParams
-        this.store.dotEle = Array.from(_tr(pagination.el).find('.swiper-pagination-bullet'))
+        this.store.ele = Array.from(_tr(this.el));
+        this.store.slideEle = Array.from(_tr(this.el).find('.swiper-slide'));
+        this.store.dotEle = Array.from(_tr(pagination.el).find('.swiper-pagination-bullet'));
         this.#pageOnCircle();
     };
 
@@ -75,28 +91,27 @@ export default class Motion extends Swiper {
             `;
         };
         
+        /** 
+         * 활성화, 비활성화 되는 함수 
+         * @param {HTMLElement}
+        */
         const handler = (self) => {
             this.current && this.#unactive(this.current); //클래스 비활성화
             this.#active(self); // 클래스 활성화
         };
 
-        dotcircle && dotEle.reduce((acc, cur, idx) => {
+        dotcircle && dotEle.reduce((acc, cur, idx, arr) => {
             cur.innerHTML = template(idx);
 
-            this.on('slideChange', (e) => {
-                // console.log(this.current);
-                // handler(this.current)
-            });
+            /** dot클릭 이벤트 */
+            _tr(cur).on('click', (e) => handler(e.currentTarget) );
+            
+            /** Swiper의 마우스 slideChange 이벤트 */
+            this.on('slideChange', (e) => cur.classList.contains('swiper-pagination-bullet-active') && handler(cur) );
+            
+            /** 최최 리프레쉬 시점에 1번째 활성화 */
+            this.#active(arr[0])
             return acc;
         },0);
-
-        dotcircle && dotEle.forEach((el, i , arr) => {
-            _tr(el).on('click', (e) => {
-                e.preventDefault();
-                handler(e.currentTarget);
-            });
-
-            this.#active(arr[0])
-        });
     };
 }
