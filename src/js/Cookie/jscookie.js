@@ -7,6 +7,7 @@ class Cookie {
     }
     /**
      * 현재 날짜와, 사작날짜 && 끝나는 날짜를 비교해서 cookiename을 념겨주는 메소드
+     * @type {object}
      * @private
      * @param {string | number} 
      */

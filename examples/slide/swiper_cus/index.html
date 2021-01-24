@@ -16,7 +16,6 @@
             <div class="swiper-slide">Slide 1</div>
             <div class="swiper-slide">Slide 2</div>
             <div class="swiper-slide">Slide 3</div>
-            ...
         </div>
         <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
@@ -35,13 +34,11 @@
             const mySwiper = new tr.Motion('.swiper-container', {
                 speed: 400,
                 loop: true,
-                autoplay: {
-                    delay: 4000,
-                },
                 flipEffect: {
                     rotate: 30,
                     slideShadows: false,
                 },
+                
                 // 페이지 매김이 필요한 경우
                 pagination: {
                     el: '.swiper-pagination',

@@ -3,8 +3,7 @@ import Actives from '../Helpers/index.js'
 
 export default class Tabs extends Actives {
     /**
-     * @type {object}
-     * @param {Options}
+     * @param {Options | object}
      * @example
      * const my = new tr.Tabs({
             targets: '.tab_js',

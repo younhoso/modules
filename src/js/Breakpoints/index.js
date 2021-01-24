@@ -1,7 +1,6 @@
 export default class BreakPoints {
     /**
-     * @type {object}
-     * @param {Options}
+     * @param {Options | object}
      * @example
      * const my = new tr.BreakPoints({
             screens: {

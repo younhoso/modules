@@ -1,8 +1,11 @@
 import "@babel/polyfill"; // 새로 추가된 전역 객체들(Promise, Map, Set)을 사용가능한 객체로 바꾸어주는 개념 import Accordions from "@/js/Actives/basic";
 
-/* base */
-import '@/css/base/reset.css';
+/** css import ST */
+// base
+import reset from '@/css/base/reset.css';
+/** css import ED */
 
+/** js import ST */
 // Actives
 import Accordions from "@/js/Actives/accordions";
 import Tabs from "@/js/Actives/tabs";
@@ -31,7 +34,11 @@ import MotionSlide from "@/js/Motion3D/motionSlide";
 
 // Scroll
 import ScrollEffect from "@/js/Scroll/scrollEffect";
+/** js import ED */
 
+export {
+    reset
+};
 export {
     Accordions,
     Tabs,
@@ -47,3 +54,4 @@ export {
     MotionSlide,
     ScrollEffect
 };
+

@@ -3,8 +3,7 @@ import Actives from '../Helpers/index.js'
 
 export default class Accordions extends Actives {
     /**
-    * @type {object}
-    * @param {Options} object
+    * @param {Options | object}
     * @example
     * new tr.Accordions ({
         targets: '.item',
