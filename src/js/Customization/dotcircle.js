@@ -27,22 +27,22 @@ export default class Motion extends Swiper {
         this.passedParams = ops;
         this.store = {dotEle: null}
         this.current = null;
-        this.initMotion();
+        this.#initMotion();
     };
     /**
      * Motion의 초기화 작업 
      */
-    initMotion() {
+    #initMotion() {
         const {pagination} = this.passedParams
         this.store.dotEle = Array.from(_tr(pagination.el).find('.swiper-pagination-bullet'))
-        this.pageOnCircle();
+        this.#pageOnCircle();
     };
 
     /**
      * 활성화 관한 메소드
      * @param {object} 현재 활성화된 이벤트 객체
      */
-    active(item) {
+    #active(item) {
         const {addClassName} = this.passedParams.pagination
 
         item.classList.add(addClassName) //기본적인 class 추가 기능
@@ -53,7 +53,7 @@ export default class Motion extends Swiper {
      * 비활성화 관한 메소드
      * @param {object} 현재 비활성화된 이벤트 객체
      */
-    unactive(item) {
+    #unactive(item) {
         const {addClassName} = this.passedParams.pagination
         if(this.current) item.classList.remove(addClassName) //기본적인 class 삭제 기능
     };
@@ -61,7 +61,7 @@ export default class Motion extends Swiper {
     /**
      * dotcircle 기능 구현
      */
-    pageOnCircle() {
+    #pageOnCircle() {
         const {dotEle} = this.store;
         const {autoplay } = this.passedParams
         const {dotcircle, strokeColor, dotColor} = this.passedParams.pagination
@@ -76,8 +76,8 @@ export default class Motion extends Swiper {
         };
         
         const handler = (self) => {
-            this.current && this.unactive(this.current); //클래스 비활성화
-            this.active(self); // 클래스 활성화
+            this.current && this.#unactive(this.current); //클래스 비활성화
+            this.#active(self); // 클래스 활성화
         };
 
         dotcircle && dotEle.reduce((acc, cur, idx) => {
@@ -96,7 +96,7 @@ export default class Motion extends Swiper {
                 handler(e.currentTarget);
             });
 
-            this.active(arr[0])
+            this.#active(arr[0])
         });
     };
 }
