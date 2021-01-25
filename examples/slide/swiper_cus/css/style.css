@@ -56,3 +56,7 @@ body {
   animation: dash 100s linear;
   animation-iteration-count: unset;
 }
+
+.swiper-pagination-bullet-active.dotcircle .paused {
+  animation-play-state : paused
+}

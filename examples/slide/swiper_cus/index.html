@@ -16,6 +16,8 @@
             <div class="swiper-slide">Slide 1</div>
             <div class="swiper-slide">Slide 2</div>
             <div class="swiper-slide">Slide 3</div>
+            <div class="swiper-slide">Slide 4</div>
+            <div class="swiper-slide">Slide 5</div>
         </div>
         <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
@@ -34,7 +36,10 @@
             console.log(tr)
             const mySwiper = new tr.Motion('.swiper-container', {
                 speed: 400,
-                loop: true,
+                loop: false,
+                autoplay: {
+                    delay: 4000,
+                },
                 flipEffect: {
                     rotate: 30,
                     slideShadows: false,
@@ -45,6 +50,7 @@
                     el: '.swiper-pagination',
                     clickable: true,
                     dotcircle: true,
+                    pageinationStop: true,
                     addClassName: 'dotcircle',
                     strokeColor : '#007aff',
                     dotColor : '#000'
@@ -56,6 +62,7 @@
                     prevEl: '.swiper-button-prev',
                 },
             });
+            
         })();
     </script>
 </body>

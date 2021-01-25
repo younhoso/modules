@@ -39,7 +39,7 @@ export default class Motion extends Swiper {
         super(el, ops);
         this.el = el;
         this.passedParams = ops;
-        this.store = {ele: null, slideEle: null, dotEle: null}
+        this.store = {ele: null, slideEle: null, pageEl: null, dotEle: null}
         this.current = null;
         this.#initMotion();
     };
@@ -50,7 +50,8 @@ export default class Motion extends Swiper {
         const {pagination} = this.passedParams
         this.store.ele = Array.from(_tr(this.el));
         this.store.slideEle = Array.from(_tr(this.el).find('.swiper-slide'));
-        this.store.dotEle = Array.from(_tr(pagination.el).find('.swiper-pagination-bullet'));
+        this.store.pageEl = _tr(pagination.el);
+        if(!pagination){ return false } else { this.store.dotEle = Array.from(_tr(pagination.el).find('.swiper-pagination-bullet')); }
         this.#pageOnCircle();
     };
 
@@ -75,17 +76,19 @@ export default class Motion extends Swiper {
     };
 
     /**
-     * dotcircle 기능 구현
+     * dot circle 기능 구현
      */
     #pageOnCircle() {
-        const {dotEle} = this.store;
+        const {pageEl, dotEle} = this.store;
         const {autoplay } = this.passedParams
-        const {dotcircle, strokeColor, dotColor} = this.passedParams.pagination
+        const {dotcircle, pageinationStop, strokeColor, dotColor} = this.passedParams.pagination
 
-        const template = function(idx){
+        const playPauseTemplate = () => `<button class='playpause'></button>`
+
+        const dotCircleTemplate = () => {
             return `
                 <svg class="fp-arc-loader" width="16" height="16" viewBox="0 0 16 16">
-                    <circle class="path" cx="8" cy="8" r="6.5" fill="none" transform="rotate(-90 8 8)" stroke="${strokeColor}" stroke-opacity="1" stroke-width="1.2px">${idx+1}</circle>
+                    <circle class="path" cx="8" cy="8" r="6.5" fill="none" transform="rotate(-90 8 8)" stroke="${strokeColor}" stroke-opacity="1" stroke-width="1.2px"></circle>
                     <circle cx="8" cy="8" r="3" fill="${dotColor}"></circle>
                 </svg>
             `;
@@ -99,15 +102,26 @@ export default class Motion extends Swiper {
             this.current && this.#unactive(this.current); //클래스 비활성화
             this.#active(self); // 클래스 활성화
         };
+        
+        pageinationStop && pageEl.append( playPauseTemplate() )
+
+        /** 정지버튼 | 재생버튼 클릭 이벤트 */
+        _tr('.playpause').on('click', (e) => {
+            this.autoplay.stop();
+            _tr('.swiper-pagination-bullet-active .path').addClass('paused')
+        });
 
         dotcircle && dotEle.reduce((acc, cur, idx, arr) => {
-            cur.innerHTML = template(idx);
-
+            cur.innerHTML = dotCircleTemplate();
             /** dot클릭 이벤트 */
-            _tr(cur).on('click', (e) => handler(e.currentTarget) );
+            _tr(cur).on('click', (e) => {
+                handler(e.currentTarget)
+            });
             
             /** Swiper의 마우스 slideChange 이벤트 */
-            this.on('slideChange', (e) => cur.classList.contains('swiper-pagination-bullet-active') && handler(cur) );
+            this.on('slideChange', (e) => {
+                cur.classList.contains('swiper-pagination-bullet-active') && handler(cur) 
+            });
             
             /** 최최 리프레쉬 시점에 1번째 활성화 */
             this.#active(arr[0])
