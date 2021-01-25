@@ -72,7 +72,7 @@ export default class Motion extends Swiper {
      */
     #unactive(item) {
         const {addClassName} = this.passedParams.pagination
-        if(this.current) item.classList.remove(addClassName) //기본적인 class 삭제 기능
+        item.classList.remove(addClassName) //기본적인 class 삭제 기능
     };
 
     /**
