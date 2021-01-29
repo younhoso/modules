@@ -18,22 +18,15 @@ import BreakPoints from "@/js/Breakpoints/index";
 import Cookie from "@/js/Cookie/jscookie";
 
 // Cookie
-import Motion from "@/js/Customization/dotcircle";
+import Motion from "@/js/Custom/dotcircle";
 
-// Helpers (프로젝트 젠체의 공유해서 사용하는 파일)
+// Helpers (프로젝트 전체의 공유해서 사용하는 파일)
 import {comma, unComma, dataGroups, dataFilter, dataArray} from '@/js/Helpers/common'
 import {DetectIE} from "@/js/Helpers/IE";
 
 // MoreViews
 import Item from "@/js/MoreViews/item";
 import Ratio from "@/js/MoreViews/ratio";
-
-// Motion3D
-import MotionBasic from "@/js/Motion3D/motionBasic";
-import MotionSlide from "@/js/Motion3D/motionSlide";
-
-// Scroll
-import ScrollEffect from "@/js/Scroll/scrollEffect";
 /** js import ED */
 
 export {
@@ -49,9 +42,6 @@ export {
     Cookie,
     Motion,
     Item,
-    Ratio,
-    MotionBasic,
-    MotionSlide,
-    ScrollEffect
+    Ratio
 };
 

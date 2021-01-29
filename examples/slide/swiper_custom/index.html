@@ -2,6 +2,8 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <meta HTTP-EQUIV="Expires" CONTENT="-1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>test</title>
 
@@ -30,10 +32,10 @@
         <div class="swiper-scrollbar"></div>
     </div>
 
-    <script src="/dist/build.min.js"></script>
+    <script src="https://unpkg.com/triplexlab@1.1.6/dist/build.min.js"></script>
     <script>
         (function() {
-            console.log(tr)
+            
             const mySwiper = new tr.Motion('.swiper-container', {
                 speed: 400,
                 loop: false,
@@ -51,9 +53,11 @@
                     clickable: true,
                     dotcircle: true,
                     pageinationStop: true,
+                    circleWidth : '16',
                     addClassName: 'dotcircle',
                     strokeColor : '#007aff',
-                    dotColor : '#000'
+                    strokeWidth : '1.6',
+                    dotColor : '#555',
                 },
 
                 // 탐색 화살표

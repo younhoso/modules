@@ -81,15 +81,15 @@ export default class Motion extends Swiper {
     #pageOnCircle() {
         const {pageEl, dotEle} = this.store;
         const {autoplay } = this.passedParams
-        const {dotcircle, pageinationStop, strokeColor, dotColor} = this.passedParams.pagination
+        const {dotcircle, pageinationStop, circleWidth, circleHeight, strokeColor, strokeWidth, dotColor} = this.passedParams.pagination
 
         const playPauseTemplate = () => `<button class='playpause'></button>`
 
         const dotCircleTemplate = () => {
             return `
-                <svg class="fp-arc-loader" width="16" height="16" viewBox="0 0 16 16">
-                    <circle class="path" cx="8" cy="8" r="6.5" fill="none" transform="rotate(-90 8 8)" stroke="${strokeColor}" stroke-opacity="1" stroke-width="1.2px"></circle>
-                    <circle cx="8" cy="8" r="3" fill="${dotColor}"></circle>
+                <svg class="circle" width="${circleWidth}" viewBox="0 0 16 16">
+                    <circle class="strok" cx="8" cy="8" r="6.5" fill="none" transform="rotate(-90 8 8)" stroke="${strokeColor}" stroke-opacity="1" stroke-width="${strokeWidth}px"></circle>
+                    <circle class="dot" cx="8" cy="8" r="3" fill="${dotColor}"></circle>
                 </svg>
             `;
         };
@@ -108,10 +108,11 @@ export default class Motion extends Swiper {
         /** 정지버튼 | 재생버튼 클릭 이벤트 */
         _tr('.playpause').on('click', (e) => {
             this.autoplay.stop();
-            _tr('.swiper-pagination-bullet-active .path').addClass('paused')
+            _tr('.swiper-pagination-bullet-active .strok').addClass('paused')
         });
 
         dotcircle && dotEle.reduce((acc, cur, idx, arr) => {
+            _tr(cur).css('background', 'transparent')
             cur.innerHTML = dotCircleTemplate();
             /** dot클릭 이벤트 */
             _tr(cur).on('click', (e) => {
