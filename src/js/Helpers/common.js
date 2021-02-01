@@ -1,7 +1,7 @@
 
 /**
  * 3번째 자리애 자동으로 ,쉼표를 넣어서 반환해줍니다.
- * @param {value | number} 숫자 값
+ * @param {value | string}
  * @example 
  * tr.comma( Number(100000) + '원' )
  */
@@ -9,9 +9,30 @@ export const comma = (el) => {
     el = String(el)
     return el.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,')
 };
+
+/**
+ * input value값에 3번째 자리애 자동으로 ,쉼표를 넣어서 반환해줍니다.
+ * @param {value | string}
+ * @example 
+ * Element.addEventListener('keyup', function(e) {
+        e.target.value = tr.comma(e.target.value)
+    });
+ */
+export const inputCommaSet = (el) => {
+    let val = el;
+    val = val.replace(/[^0-9\.]/g,'');
+    
+    if(val != "") {
+        const valArr = val.split('.');
+        valArr[0] = (parseInt(valArr[0],10)).toLocaleString();
+        val = valArr.join('.');
+    }
+    return val;
+};
+
 /**
  * 3번째 자리애 자동으로 ,쉼표를 빼서 반환해줍니다.
- * @param {value} 숫자 값
+ * @param {value | string}
  * @example 
  * tr.comma( Number( values1.value) + '원' )
  */

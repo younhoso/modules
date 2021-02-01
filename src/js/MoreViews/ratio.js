@@ -1,5 +1,5 @@
 import {_tr} from '../Helpers/DomApi.js'
-import Moreview from './index.js'
+import Moreview from './basic.js'
 
 export default class Ratio extends Moreview {
     constructor(el) {

@@ -1,5 +1,5 @@
 import {_tr} from '../Helpers/DomApi.js'
-import Actives from '../Helpers/index.js'
+import Actives from '../Helpers/basic.js'
 
 export default class Tabs extends Actives {
     /**

@@ -41,16 +41,27 @@
             const show = document.querySelector('.js-show');
             const total = document.querySelector('.js-total');
 
+            const tka = document.querySelector('.tka-inner');
             const values1 = document.querySelector('.tka1');
             const values2 = document.querySelector('.tka2');
 
             const app = document.querySelector('.app');
+
+            tka.addEventListener('keyup', function(e) {
+                e.target.value = tr.inputCommaSet(e.target.value)
+            });
             
             btn.addEventListener('click', function(){
-                item.innerHTML = tr.comma( Number( values1.value) + '원' )
-                show.innerHTML = tr.comma( Number( values2.value) + '원' )
-                total.innerHTML = tr.comma(Number( values1.value) + Number( values2.value) + '원')
+                item.innerHTML = tr.comma(values1.value + '원' )
+                show.innerHTML = tr.comma(values2.value + '원' )
+
+                const num1 = Number(tr.unComma(values1.value))
+                const num2 = Number(tr.unComma(values2.value))
+
+                total.innerHTML = tr.comma(num1 + num2)
             });
+
+
             
         })();
     </script>

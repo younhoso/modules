@@ -1,5 +1,3 @@
-import "@babel/polyfill"; // 새로 추가된 전역 객체들(Promise, Map, Set)을 사용가능한 객체로 바꾸어주는 개념 import Accordions from "@/js/Actives/basic";
-
 /** css import ST */
 // base
 import reset from '@/css/base/reset.css';
@@ -12,16 +10,16 @@ import Tabs from "@/js/Actives/tabs";
 import ToggleDynamic from "@/js/Actives/toggleDynamic";
 
 // Breakpoints
-import BreakPoints from "@/js/Breakpoints/index";
+import BreakPoints from "@/js/Breakpoints/app";
 
 // Cookie
-import Cookie from "@/js/Cookie/jscookie";
+import Cookie from "@/js/Cookie/app";
 
-// Cookie
-import Motion from "@/js/Custom/dotcircle";
+// Custom
+import Motion from "@/js/Custom/app";
 
 // Helpers (프로젝트 전체의 공유해서 사용하는 파일)
-import {comma, unComma, dataGroups, dataFilter, dataArray} from '@/js/Helpers/common'
+import {comma, unComma, inputCommaSet, dataGroups, dataFilter, dataArray} from '@/js/Helpers/common'
 import {DetectIE} from "@/js/Helpers/IE";
 
 // MoreViews
@@ -37,7 +35,7 @@ export {
     Tabs,
     ToggleDynamic,
     BreakPoints,
-    comma, unComma, dataGroups, dataFilter, dataArray,
+    comma, unComma, inputCommaSet, dataGroups, dataFilter, dataArray,
     DetectIE,
     Cookie,
     Motion,
