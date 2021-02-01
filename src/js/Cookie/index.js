@@ -1,4 +1,5 @@
 // Cookie
-import Cookie from "@/js/Cookie/app";
+import selfCookie from "@/js/Cookie/selfCookie";
+import otherCookie from "@/js/Cookie/otherCookie";
 
-export {Cookie}
+export {selfCookie, otherCookie}

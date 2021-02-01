@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="./app.css">
 </head>
 <body>
-    <div id="SetCookie0">
+    <!-- <div id="SetCookie0">
         <div class="content">
             <div class="content_inner">
                 <a href="#0"><img class="thumb" src="./images/pop1.jpg" alt="popup"/></a>
@@ -20,27 +20,28 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <div id="SetCookie1">
+    <div id="SetCookie1" class="close_inner-js">
         <div class="content">
             <div class="content_inner">
                 <a href="#0"><img class="thumb" src="./images/pop2.jpg" alt="popup"/></a>
                 <div class="close">
                     <span class="inpus"> 
-                        <input type='checkbox' id="b" class="closeed2"/>
-                        <label for="b">오늘 하루동안 보지 않기 </label>
+                        <input type='checkbox' id="b" class="check"/>
+                        <label for="b">오늘 하루동안 보지 않기</label>
                     </span>
+                    <span class="closeed2"> <a href="#0">닫기</a></span>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="SetCookie2">
+    <div id="SetCookie2" class="close_inner-js" style="display: none;">
         <div class="content">
             <div class="content_inner">
                 <a href="#0"><img class="thumb" src="./images/pop3.jpg" alt="popup"/></a>
-                <div class="close close_inner-js">
+                <div class="close">
                     <span class="inpus"> 
                         <input type='checkbox' id="c" class="check"/>
                         <label for="c">3일 동안 보지 않기</label>
@@ -56,25 +57,18 @@
 
         (function(){
             console.log(tr)
-            tr.Cookie.selfCookie({
-                targets: {                          // selfCookie 메서드인 경우 eventEl만 있으면 됩니다.
-                    eventEl:'.closeed1'             
-                },
-                cookiename: 'SetCookie0',           // 쿠키의 전체 영역을 가르치는 id값와 같아야 합니다.
-                daying: 3,                          // 오늘 하루 안보기의 (3 day) 정오 00:00 시 기준입니다.
-                startdate: '2021/01/16 23:05:00',   // 시작하는 날짜와 시간
-                enddate: '2021/12/19 23:45:00',     // 끝나는 날짜와 시간
-            });
 
-            tr.Cookie.selfCookie({
+            new tr.otherCookie({
                 targets: {
+                    startEl: '.close_inner-js',
+                    endEl: '.check',
                     eventEl:'.closeed2'
                 },
                 cookiename: 'SetCookie1',           // 쿠키의 전체 영역을 가르치는 id값와 같아야 합니다.
                 daying: 1                           // 오늘 하루 안보기의 (1 day) 정오 00:00 시 기준입니다.
             });
 
-            tr.Cookie.otherCookie({
+            new tr.otherCookie({
                 targets: {                          // otherCookie 메서드인 경우 startEl, endEl, eventEl 있어야 합니다.
                     startEl: '.close_inner-js',
                     endEl: '.check', 
@@ -82,8 +76,8 @@
                 },
                 cookiename: 'SetCookie2',           // 쿠키의 전체 영역을 가르치는 id값와 같아야 합니다.
                 daying: 3,                          // 오늘 하루 안보기의 (1 day) 정오 00:00 시 기준입니다.
-                startdate: '2021/01/05 10:00:00',   // 시작하는 날짜와 시간
-                enddate: '2021/12/31 23:00:00',     // 끝나는 날짜와 시간
+                startdate: '2021/02/01 10:00:00',   // 시작하는 날짜와 시간
+                enddate: '2021/02/01 20:01:00',     // 끝나는 날짜와 시간
             });
 
         })();

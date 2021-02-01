@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="./app.css">
 </head>
 <body>
-    <div id="SetCookie0">
+    <div id="SetCookie0" style="display: none;">
         <div class="content">
             <div class="content_inner">
                 <a href="#0"><img class="thumb" src="./images/pop1.png" alt="popup"/></a>
                 <div class="close">
                     <span class="item inpus"> 
                         <input type='checkbox' id="a" class="closeed1"/>
-                        <label for="a">1일 동안 보지 암음</label>
+                        <label for="a">2일 동안 보지 암음</label>
                     </span>
                     <span class="item closeed0"> <a href="#0">닫기</a></span>
                 </div>
@@ -22,21 +22,43 @@
         </div>
     </div>
 
-    <script src="/dist/build.min.js"></script>
+    <div id="SetCookie1">
+        <div class="content">
+            <div class="content_inner">
+                <a href="#0"><img class="thumb" src="./images/pop1.png" alt="popup"/></a>
+                <div class="close">
+                    <span class="item inpus"> 
+                        <input type='checkbox' id="a1" class="closeed2"/>
+                        <label for="a1">3일 동안 보지 암음</label>
+                    </span>
+                    <span class="item closeed0"> <a href="#0">닫기</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/dist/cookie.min.js"></script>
     <script>
         (function(){
-            console.log(tr)
             const clos = document.querySelector('.closeed0');
             const content = document.querySelector('.content');
 
-            tr.Cookie.selfCookie({
+            const myc01 = new tr.selfCookie({
                 targets: {                          // selfCookie 메서드인 경우 eventEl만 있으면 됩니다.
                     eventEl:'.closeed1'             
                 },
                 cookiename: 'SetCookie0',           // 쿠키의 전체 영역을 가르치는 id값와 같아야 합니다.
-                daying: 1,                          // 오늘 하루 안보기의 (1 day) 정오 00:00 시 기준입니다.
-                startdate: '2021/01/16 23:05:00',   // 시작하는 날짜와 시간
-                enddate: '2021/12/19 23:45:00',     // 끝나는 날짜와 시간
+                daying: 2,                          // 오늘 하루 안보기의 (2 day) 정오 00:00 시 기준입니다.
+                startdate: '2021/02/01 10:00:00',   // 시작하는 날짜와 시간
+                enddate: '2021/02/05 20:00:00',     // 끝나는 날짜와 시간
+            });
+
+           const myc02 = new tr.selfCookie({
+                targets: {                          // selfCookie 메서드인 경우 eventEl만 있으면 됩니다.
+                    eventEl:'.closeed2'             
+                },
+                cookiename: 'SetCookie1',           // 쿠키의 전체 영역을 가르치는 id값와 같아야 합니다.
+                daying: 3                          // 오늘 하루 안보기의 (1 day) 정오 00:00 시 기준입니다.
             });
 
             clos.addEventListener('click', function() {

@@ -31,7 +31,7 @@ const setCookie = (cname, cvalue, exdays) => {
  * @param {string | string | number}
  */
 const setCookieAt00 = ( cname, cvalue, expiredays ) => {
-   let todayDate = new Date();   
+   let todayDate = new Date();
    todayDate = new Date(parseInt(todayDate.getTime() / 86400000) * 86400000 + 54000000);  
    if ( todayDate > new Date() ){  
       expiredays = expiredays - 1;
@@ -41,13 +41,14 @@ const setCookieAt00 = ( cname, cvalue, expiredays ) => {
 };
 
 /**
- * 최초 브라우저 Refresh 시점에서 핸들링하는 함수
+ * 평소에는 block으로 보임, getCookie 값이 존재하면 none 됩니다.
  * @type {object}
  * @param {string}
  */
 const openWin = ( winName ) => {
    const blnCookie = getCookie( winName );
    const obj = eval( "window." + winName );
+   
    if( !blnCookie ) {               // 이것이 DOM에 block, none을 Refresh시에도 유지시켜줍니다.
       obj.style.display = "block";
    } else {
