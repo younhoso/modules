@@ -14,6 +14,8 @@ body{background:#eee;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-
     }
 }
 /* .dotcircle에 관한 스타일 ST */
+.swiper-pagination-bullet a {cursor: default;}
+.swiper-pagination-clickable .swiper-pagination-bullet a {cursor: pointer;}
 .swiper-pagination-bullet-active.dotcircle .strok{
   display: inline-block;
   stroke-dasharray: 1000;
@@ -21,6 +23,9 @@ body{background:#eee;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-
   animation: dash 100s linear;
   animation-iteration-count: unset;
 }
-
 .swiper-pagination-bullet-active.dotcircle .paused{animation-play-state:paused}
 /* .dotcircle에 관한 스타일 ED */
+
+/** paused 에 관한 스타일 ST */
+.swiper-paused{position:absolute;bottom:0;left:50%;z-index:2;-webkit-transform:translate(-111px,-3px);-ms-transform:translate(-111px,-3px);transform:translate(-111px,-3px)}
+/** paused 에 관한 스타일  */

@@ -23,6 +23,10 @@
         </div>
         <!-- If we need pagination -->
         <div class="swiper-pagination"></div>
+
+        <!-- 커스텀 마이징 새로 추가한 paused ST -->
+        <div class="swiper-paused"></div>
+        <!-- // 커스텀 마이징 새로 추가한 paused ED -->
     
         <!-- If we need navigation buttons -->
         <div class="swiper-button-prev"></div>
@@ -32,16 +36,16 @@
         <div class="swiper-scrollbar"></div>
     </div>
 
-    <script src="https://unpkg.com/triplexlab@1.1.6/dist/build.min.js"></script>
+    <script src="../../../dist/Motion.min.js"></script>
     <script>
         (function() {
             
             const mySwiper = new tr.Motion('.swiper-container', {
                 speed: 400,
                 loop: false,
-                autoplay: {
-                    delay: 4000,
-                },
+                // autoplay: {
+                //     delay: 4000,
+                // },
                 flipEffect: {
                     rotate: 30,
                     slideShadows: false,
@@ -50,16 +54,24 @@
                 // 페이지 매김이 필요한 경우
                 pagination: {
                     el: '.swiper-pagination',
-                    clickable: true,
-                    dotcircle: true,
-                    pageinationStop: true,
-                    circleWidth : '16',
-                    addClassName: 'dotcircle',
-                    strokeColor : '#007aff',
-                    strokeWidth : '1.6',
-                    dotColor : '#555',
+                    clickable: false,
+                    dotcircle: false,  // 커스텀 마이징 추가한 옵션 ST
+                    circleSize : '16',
+                    addClassName: 'dotcircle', 
+                    strokeColor : '#007aff', 
+                    strokeWidth : '1.6', 
+                    dotColor : '#555', // 커스텀 마이징 추가한 옵션 ED
                 },
-
+                // 커스텀 마이징 추가한 옵션 ST
+                paused: {
+                    pausedEl: '.swiper-paused',
+                    size: '22',
+                    strokePausedColor : '#007aff',
+                    strokePausedWidth : '1.6',
+                    dotPausedColor : '#555',
+                },
+                // 커스텀 마이징 추가한 옵션 ED
+                
                 // 탐색 화살표
                 navigation: {
                     nextEl: '.swiper-button-next',
