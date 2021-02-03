@@ -27,7 +27,14 @@ export default class Motion extends Swiper {
             strokeColor : '#007aff',
             dotColor : '#000'
         },
-
+        paused: {
+            pausedEl: '.swiper-paused',
+            pausedSize: '18',
+            strokePausedColor : '#007aff',
+            strokePausedWidth : '1.6',
+            pausedColor : '#333',
+            playColor : '#007aff',
+        },
         // 탐색 화살표
         navigation: {
             nextEl: '.swiper-button-next',
@@ -39,6 +46,7 @@ export default class Motion extends Swiper {
         super(el, ops);
         this.el = el;
         this.passedParams = ops;
+        this.paused = ops.paused;
         this.store = {ele: null, slideEle: null, pageEl: null, dotEles: null, pausedValue: null}
         this.current = null;
         this.#initMotion();
@@ -52,8 +60,27 @@ export default class Motion extends Swiper {
         this.store.slideEle = Array.from(_tr(this.el).find('.swiper-slide'));
         this.store.pageEl = _tr(pagination.el);
         if(!pagination){ return false } else { this.store.dotEles = Array.from(_tr(pagination.el).find('.swiper-pagination-bullet')); }
-        if(!paused){ return false } else { this.store.pausedValue = this.passedParams.paused }
+        
+        if(!paused){ 
+            this.#pageOnCircle(); 
+        } else { 
+            this.store.pausedValue = this.passedParams.paused; 
+            this.#paused(); 
+        }
         this.#pageOnCircle();
+    };
+
+    get paused() {
+        return this._paused;
+    };
+
+    set paused(value) {
+        const {autoplay} = this.passedParams
+
+        if(value && !autoplay){
+            throw Error('autoplay옵션과 같이 사용하는것을 권장합니다.')
+        }
+        this._paused = value
     };
 
     /**
@@ -77,38 +104,12 @@ export default class Motion extends Swiper {
     };
 
     /**
-     * dot circle 기능 구현
+     * dotCircle 옵션 기능 구현
      */
     #pageOnCircle() {
         const {dotEles} = this.store;
-        const {autoplay , paused} = this.passedParams
-        const {dotcircle, circleSize, strokeColor, strokeWidth, dotColor} = this.passedParams.pagination
-        const {pausedEl, size, strokePausedColor, strokePausedWidth, dotPausedColor} = this.store.pausedValue
+        const {dotCircle, circleSize, strokeColor, strokeWidth, dotColor} = this.passedParams.pagination
 
-        const stopTemplate = () => {
-            return `
-                <a class="swiper-btn-stop paused active" href="#0">
-                    <svg width="${size}" height="31" viewBox="0 0 31 31">
-                        <g fill="none" fill-rule="evenodd">
-                            <circle cx="15.5" cy="15.5" r="12.5" stroke="${strokePausedColor}" stroke-width="${strokePausedWidth}"/>
-                            <g stroke="#333" stroke-linecap="round" stroke-width="2">
-                                <path d="M18 12v7M13 12v7"/>
-                            </g>
-                        </g>
-                    </svg>
-                </a>
-            `;
-        };
-        const playTemplate = () => {
-            return `
-                <svg width="31" height="31" viewBox="0 0 31 31">
-                    <g fill="none" fill-rule="evenodd">
-                        <circle cx="15.5" cy="15.5" r="12.5" stroke="#DDD"/>
-                        <path fill="#333" d="M20.213 15.937l-7.47 4.15A.5.5 0 0 1 12 19.65v-8.3a.5.5 0 0 1 .743-.437l7.47 4.15a.5.5 0 0 1 0 .874z"/>
-                    </g>
-                </svg>
-            `;
-        };
         const dotCircleTemplate = () => {
             return `
                 <a href="#0">
@@ -129,24 +130,7 @@ export default class Motion extends Swiper {
             this.#active(self); // 클래스 활성화
         };
         
-        paused && _tr(pausedEl).html(stopTemplate());
-
-        /** 정지버튼 | 재생버튼 클릭 이벤트 */
-        _tr('.paused').on('click', (e) => {
-            if(_tr(e.currentTarget).hasClass('active')) {
-                _tr(e.currentTarget).removeClass('active');
-                _tr(e.currentTarget).html(playTemplate());
-                _tr('.swiper-pagination-bullet-active .strok').addClass('paused');
-                this.autoplay.stop();
-            } else {
-                _tr(e.currentTarget).addClass('active');
-                _tr(e.currentTarget).html(stopTemplate());
-                _tr('.swiper-pagination-bullet-active .strok').removeClass('paused');
-                this.autoplay.start();
-            }
-        });
-
-        dotcircle && dotEles.reduce((acc, cur, idx, arr) => {
+        dotCircle && dotEles.reduce((acc, cur, idx, arr) => {
             _tr(cur).css({width:"auto",height:"auto",background:"transparent"});
             cur.innerHTML = dotCircleTemplate();
             /** dot클릭 이벤트 */
@@ -163,5 +147,52 @@ export default class Motion extends Swiper {
             this.#active(arr[0])
             return acc;
         },0);
+    };
+
+    /**
+     * paused 옵션 기능 구현
+     */
+    #paused() {
+        const {pausedEl, pausedSize, strokePausedColor, strokePausedWidth, pausedColor, playColor} = this.store.pausedValue
+        const stopTemplate = () => {
+            return `
+                <svg width="${pausedSize}" height="${pausedSize}" viewBox="0 0 31 31">
+                    <g fill="none" fill-rule="evenodd">
+                        <circle cx="15.5" cy="15.5" r="12.5" stroke="${strokePausedColor}" stroke-width="${strokePausedWidth}"/>
+                        <g stroke="${pausedColor}" stroke-linecap="round" stroke-width="2">
+                            <path d="M18 12v7M13 12v7"/>
+                        </g>
+                    </g>
+                </svg>
+            `;
+        };
+        const playTemplate = () => {
+            return `
+                <svg width="${pausedSize}" height="${pausedSize}" viewBox="0 0 31 31">
+                    <g fill="none" fill-rule="evenodd">
+                        <circle cx="15.5" cy="15.5" r="12.5" stroke="${strokePausedColor}" stroke-width="${strokePausedWidth}"/>
+                        <path fill="${playColor}" d="M20.213 15.937l-7.47 4.15A.5.5 0 0 1 12 19.65v-8.3a.5.5 0 0 1 .743-.437l7.47 4.15a.5.5 0 0 1 0 .874z"/>
+                    </g>
+                </svg>
+            `;
+        };
+
+        _tr(pausedEl).html(`<a class="swiper-btn paused active" href="#0"></a>`);
+        _tr(pausedEl).find('.paused').html(stopTemplate());
+
+        /** 정지버튼 | 재생버튼 클릭 이벤트 */
+        _tr('.paused').on('click', (e) => {
+            if(_tr(e.currentTarget).hasClass('active')) {
+                _tr(e.currentTarget).removeClass('active');
+                _tr(e.currentTarget).html(playTemplate());
+                _tr('.swiper-pagination-bullet-active .strok').addClass('paused');
+                this.autoplay.stop();
+            } else {
+                _tr(e.currentTarget).addClass('active');
+                _tr(e.currentTarget).html(stopTemplate());
+                _tr('.swiper-pagination-bullet-active .strok').removeClass('paused');
+                this.autoplay.start();
+            }
+        });
     };
 }

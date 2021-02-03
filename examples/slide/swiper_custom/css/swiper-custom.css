@@ -20,12 +20,21 @@ body{background:#eee;font-family:Helvetica Neue,Helvetica,Arial,sans-serif;font-
   display: inline-block;
   stroke-dasharray: 1000;
   stroke-dashoffset: 0;
-  animation: dash 100s linear;
+  animation: dash 90s linear;
   animation-iteration-count: unset;
 }
 .swiper-pagination-bullet-active.dotcircle .paused{animation-play-state:paused}
 /* .dotcircle에 관한 스타일 ED */
 
 /** paused 에 관한 스타일 ST */
-.swiper-paused{position:absolute;bottom:0;left:50%;z-index:2;-webkit-transform:translate(-111px,-3px);-ms-transform:translate(-111px,-3px);transform:translate(-111px,-3px)}
+.swiper-paused {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  z-index: 2;
+  -webkit-transform: translate(-103px,-8px);
+  -ms-transform: translate(-103px,-8px);
+  transform: translate(-103px,-8px);
+}
+.swiper-paused .paused {display: inline-block;}
 /** paused 에 관한 스타일  */

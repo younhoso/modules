@@ -5,10 +5,10 @@
     <meta HTTP-EQUIV="Pragma" CONTENT="no-cache">
     <meta HTTP-EQUIV="Expires" CONTENT="-1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test</title>
+    <title>swiper-custom</title>
 
     <link rel="stylesheet" href="./css/swiper-bundle.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/swiper-custom.css">
 </head>
 <body>
     <div class="swiper-container">
@@ -22,7 +22,9 @@
             <div class="swiper-slide">Slide 5</div>
         </div>
         <!-- If we need pagination -->
-        <div class="swiper-pagination"></div>
+        <div class="swiper-pagination">
+            <a class="swiper-btn-stop paused active" href="#0"></a>
+        </div>
 
         <!-- 커스텀 마이징 새로 추가한 paused ST -->
         <div class="swiper-paused"></div>
@@ -41,11 +43,11 @@
         (function() {
             
             const mySwiper = new tr.Motion('.swiper-container', {
-                speed: 400,
+                speed: 500,
                 loop: false,
-                // autoplay: {
-                //     delay: 4000,
-                // },
+                autoplay: {
+                    delay: 4000,
+                },
                 flipEffect: {
                     rotate: 30,
                     slideShadows: false,
@@ -54,23 +56,24 @@
                 // 페이지 매김이 필요한 경우
                 pagination: {
                     el: '.swiper-pagination',
-                    clickable: false,
-                    dotcircle: false,  // 커스텀 마이징 추가한 옵션 ST
+                    clickable: true,
+                    dotCircle: true,  // 커스텀 마이징 추가한 옵션 ST
                     circleSize : '16',
                     addClassName: 'dotcircle', 
                     strokeColor : '#007aff', 
                     strokeWidth : '1.6', 
                     dotColor : '#555', // 커스텀 마이징 추가한 옵션 ED
                 },
-                // 커스텀 마이징 추가한 옵션 ST
+                // 커스텀 마이징 추가한 옵션 ST (paused옵션은 autoplay 옵션과 같이 쓰는것을 권장 합니다.)
                 paused: {
                     pausedEl: '.swiper-paused',
-                    size: '22',
+                    pausedSize: '18',
                     strokePausedColor : '#007aff',
                     strokePausedWidth : '1.6',
-                    dotPausedColor : '#555',
+                    pausedColor : '#333',
+                    playColor : '#007aff',
                 },
-                // 커스텀 마이징 추가한 옵션 ED
+                // 커스텀 마이징 추가한 옵션 ED (paused옵션은 autoplay 옵션과 같이 쓰는것을 권장 합니다.)
                 
                 // 탐색 화살표
                 navigation: {
