@@ -15,7 +15,7 @@ export const comma = (el) => {
  * @param {value | string}
  * @example 
  * Element.addEventListener('keyup', function(e) {
-        e.target.value = tr.comma(e.target.value)
+        e.target.value = tr.inputCommaSet(e.target.value)
     });
  */
 export const inputCommaSet = (el) => {
@@ -63,9 +63,9 @@ export const dataGroups = (target, property, props = {}) => {
 /**
  * object(JSON)의 키 기준으로 필터링되고, 그룹핑을 하여, 하나의 Array를 반환해줍니다. 
  * @param {objectName} target 
- * @param {objectKey|string} property
+ * @param {PropertyName(String) | PropertyValue(Number)}
  * @example 
- * tr.dataFilter(people, { age: '23' })
+ * tr.dataFilter(people, { age: 23 })
  */
 export const dataFilter = (target, property) => {
     const [...obName] = target

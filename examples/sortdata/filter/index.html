@@ -18,12 +18,13 @@
              
             const people = [
                 { id: 1, name: 'iroMan', actor: '로버트 다우니 주니어', alias: '아이어맨', age: 40 },
-                { id: 2, name: 'Jane', actor:'toto', alias: 'dddd', age: 23 },
+                { id: 2, name: 'Jane', actor:'toto', alias: 'dddd', age: 21 },
                 { id: 3, name: 'captainAmerica', actor:'크리스 에반스1', alias: '캡틴 아메리카', age: 40 },
                 { id: 4, name: 'captainAmerica', actor:'크리스 에반스2', alias: '캡틴', age: 23 }
             ];
 
-            const filter = tr.dataFilter(people, { age: '23' })
+            // dataFilter() 함수는 opject value값 type이 number만 가능합니다.
+            const filter = tr.dataFilter(people, { age: 40 }) // age라는 값 중에서 value 값 기준으로 필터링을해서 새로운 배열로 받을수 있습니다.
             console.log(filter)
 
             const tamplate = ((props) => {

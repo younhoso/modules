@@ -18,12 +18,12 @@
             const people = [
                 { id: 1, name: 'iroMan', actor: '로버트 다우니 주니어', alias: '아이어맨', age: 40 },
                 { id: 2, name: 'Jane', actor:'toto', alias: 'dddd', age: 21 },
-                { id: 3, name: 'Jane2', actor:'toto2', alias: 'dddd2', age: 21 },
+                { id: 3, name: 'Jane', actor:'toto2', alias: 'dddd2', age: 21 },
                 { id: 4, name: 'captainAmerica', actor:'크리스 에반스1', alias: '캡틴 아메리카', age: 40 },
                 { id: 5, name: 'captainAmerica', actor:'크리스 에반스2', alias: '캡틴', age: 40 }
             ];
 
-            const age = tr.dataGroups(people, 'age', {group: true}) // age라는 키의 기준으로 그룹핑을 한다.
+            const age = tr.dataGroups(people, 'name', {group: true}) // age라는 키의 기준으로 그룹핑을 한다.
             console.log(age)
 
             const tamplate = ((props) => {
@@ -37,10 +37,13 @@
                 `
             });
 
-            age[40].forEach(element => { // age라는 값중에 40이라는 것 안에 배열로 구룹핑되어 있다. 그것들을 forEach로 가져와 화면에 뿌린다.
+            age['Jane'].forEach(element => { // age라는 값중에 40이라는 것 안에 배열로 구룹핑되어 있다. 그것들을 forEach로 가져와 화면에 뿌린다.
                 document.querySelector('.list-inner').innerHTML += tamplate(element)
             });
-            age[21].forEach(element => { // age라는 값중에 21이라는 것 안에 배열로 구룹핑되어 있다. 그것들을 forEach로 가져와 화면에 뿌린다.
+            age['captainAmerica'].forEach(element => { // age라는 값중에 21이라는 것 안에 배열로 구룹핑되어 있다. 그것들을 forEach로 가져와 화면에 뿌린다.
+                document.querySelector('.list-inner2').innerHTML += tamplate(element)
+            });
+            age['iroMan'].forEach(element => { // age라는 값중에 21이라는 것 안에 배열로 구룹핑되어 있다. 그것들을 forEach로 가져와 화면에 뿌린다.
                 document.querySelector('.list-inner2').innerHTML += tamplate(element)
             });
         })();
