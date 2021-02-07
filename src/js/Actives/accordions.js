@@ -38,7 +38,7 @@ export default class Accordions {
                 });
             },0);
 
-            firstItemActive && this.store.eleSib.css('height', 0), this.store.ele.eq(0).css('height', 'auto')
+            firstItemActive ? (this.store.eleSib.css('height', 0), this.store.ele.eq(0).css('height', 'auto')) : (this.store.ele.css('height', 0))
         })();
     };
 };
