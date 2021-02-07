@@ -40,7 +40,7 @@ export default class Tabs extends Actives {
         this.store.target = _tr(targets);
         this.store.addClassName = addClassName;
         
-        const lineTemplate = () => `<i class="line_item"></i>`;
+        const lineTemplate = () => `<i class="tr_line_item"></i>`;
 
         const line = _tr(lineAnime.targets);
         line.html(lineTemplate());
@@ -54,12 +54,12 @@ export default class Tabs extends Actives {
 
         (() => {
            const w = this.store.target[0].clientWidth;
-            _tr('.line_item').css({'width': w + 'px'})
+            _tr('.tr_line_item').css({'width': w + 'px'})
 
             this.store.target.on('click', (e) => {
                 e.preventDefault();
                 handler(e.currentTarget)
-                TweenMax.to('.line_item', {x: w * this.store.idx})
+                TweenMax.to('.tr_line_item', {x: w * this.store.idx})
             });
         })();
         handler(this.store.target[0])
