@@ -1,5 +1,6 @@
 import {_tr} from '../Helpers/DomApi.js'
 import Actives from '../Helpers/basic.js'
+import { TweenMax } from "gsap/all";
 
 export default class Tabs extends Actives {
     /**
@@ -35,25 +36,33 @@ export default class Tabs extends Actives {
      * 특정 조건에만 실행하는 메소드
      */
     initHandler() {
-        const { targets, addClassName, firstItemActive } = this.el;
+        const { targets, addClassName, lineAnime } = this.el;
         this.store.target = _tr(targets);
         this.store.addClassName = addClassName;
+        
+        const lineTemplate = () => `<i class="line_item"></i>`;
+
+        const line = _tr(lineAnime.targets);
+        line.html(lineTemplate());
         
         const handler = (self) => {
             this.current && super.unactive(this.current); //클래스 비활성화
             super.active(self); // 클래스 활성화
-
-            this.el.addChild && this.ValueChang(self);
             this.store.idx = _tr(targets).indexOf(self)
+            this.el.addChild && this.ValueChang(self);
         };
 
         (() => {
+           const w = this.store.target[0].clientWidth;
+            _tr('.line_item').css({'width': w + 'px'})
+
             this.store.target.on('click', (e) => {
                 e.preventDefault();
-                handler(e.currentTarget);
+                handler(e.currentTarget)
+                TweenMax.to('.line_item', {x: w * this.store.idx})
             });
         })();
-        firstItemActive && handler(this.store.target[0])
+        handler(this.store.target[0])
     };
 };
         

@@ -11,40 +11,32 @@
         <h1>Tabs</h1>
         <div class="tabs triple_tabs">
             <ul>
-                <li class="tab tab_js">A</li>
-                <li class="tab tab_js">B</li>
-                <li class="tab tab_js">C</li>
-                <li class="tab tab_js">D</li>
-                <li class="tab tab_js">E</li>
+                <li class="tab tr_tab">A</li>
+                <li class="tab tr_tab">B</li>
+                <li class="tab tr_tab">C</li>
+                <li class="tab tr_tab">D</li>
+                <li class="tab tr_tab">E</li>
             </ul>
-            <div class="line">
-                <i class="line_item"></i>
-            </div>
+            <div class="line tr_line"></div>
         </div>
     </div>
  
     <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
-    <script src="/dist/build.min.js"></script>
+    <script src="/dist/all.min.js"></script>
     <script>
         /**
             triplelab의 자원과, jquery의 자원을 이용해서 쉽고, 빠르게 UI를 완성할수 있습니다.
             You can easily and quickly complete UI by using triplelab resources and jquery resources. 
         */
        (function(){
-            console.log(tr)
             const my = new tr.Tabs({
-                targets: '.tab_js',
+                targets: '.tr_tab',
                 addClassName: 'actives',      // 넣고 싶은 클랙스 명
-                firstItemActive: true        // 첫번째 아이템을 활성화 할건지 여부체크 true or false
+                lineAnime: {
+                    targets: '.tr_line'
+                }
             });
 
-            $(function() {
-                $('.line_item').css({width: $('.tab').outerWidth()});
-                $('.tab').on('click', function() {
-                    console.log(my.store.idx) // endEl의 (자기 자신을 클릭)한 인텍스 값을 가져올수 있습니다.
-                    $('.line_item').animate({left: $(this).outerWidth() * my.store.idx}, 250);
-                });
-            }); 
         })();
     </script>
 </body>
