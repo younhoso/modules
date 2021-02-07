@@ -1,7 +1,7 @@
 import {_tr} from '../Helpers/DomApi.js';
-import Actives from '../Helpers/basic.js'
+import { gsap } from "gsap";
 
-export default class Accordions extends Actives {
+export default class Accordions {
     /**
     * @param {Options | object}
     * @example
@@ -13,7 +13,8 @@ export default class Accordions extends Actives {
       });
     */
     constructor(el) {
-        super(el);
+        this.el = el;
+        this.store = {ele: null, eleSib: null, self: null}
         this.initHandler();
     };
     /**
@@ -22,20 +23,22 @@ export default class Accordions extends Actives {
     initHandler() {
         const { targets, event, firstItemActive } = this.el;
         const target = _tr(targets);
-        
-        const handler = (self) => { // 특정 조건에만 실행하는 함수
-            this.current && super.unactive(this.current)
-            super.active(self)
-        };
+        this.store.eleSib = target.siblings().find('.tr_accordion');
+        this.store.ele = target.find('.tr_accordion');
 
         (() => { // 이벤트 핸들러 함수(즉시 실행)
             target.reduce((acc, cur, idx, src) => {
                 cur.addEventListener (event, (e) => {
                     e.preventDefault(); e.stopPropagation();
-                    handler(e.currentTarget);
+                    const _selfSib = _tr(e.currentTarget).siblings().find('.tr_accordion')
+                    const _self = _tr(e.currentTarget).find('.tr_accordion')
+
+                    gsap.to(_selfSib, {'height': '0'})
+                    gsap.to(_self, {'height': 'auto'})
                 });
             },0);
-            firstItemActive && handler(target[0])
+
+            firstItemActive && this.store.eleSib.css('height', 0), this.store.ele.eq(0).css('height', 'auto')
         })();
     };
 };

@@ -19,7 +19,7 @@ import Cookie from "@/js/Cookie/app";
 import Motion from "@/js/Custom/app";
 
 // Helpers (프로젝트 전체의 공유해서 사용하는 파일)
-import {comma, unComma, inputCommaSet, dataGroups, dataFilter, dataArray} from '@/js/Helpers/common'
+import {comma, unComma, inputCommaSet, cloneObject, dataGroups, dataFilter, dataArray} from '@/js/Helpers/common'
 import {DetectIE} from "@/js/Helpers/IE";
 
 // MoreViews
@@ -35,7 +35,7 @@ export {
     Tabs,
     ToggleDynamic,
     BreakPoints,
-    comma, unComma, inputCommaSet, dataGroups, dataFilter, dataArray,
+    comma, unComma, inputCommaSet, cloneObject, dataGroups, dataFilter, dataArray,
     DetectIE,
     Cookie,
     Motion,

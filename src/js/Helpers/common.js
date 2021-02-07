@@ -42,6 +42,29 @@ export const unComma = (el) => { // 숫자를 받아서,
 };
 
 /**
+ * data(객체)를 복사하는 함수.
+ * @param {objectName} target 
+ */
+export const cloneObject = (target) => {
+    if(target === null || typeof target !== 'object'){
+       return target
+    }
+    
+    let temp;
+    if(Array.isArray(target)) {
+       temp = [];
+    } else {
+       temp = {};
+    }
+    
+    for(let key of Object.keys(target)){
+       temp[key] = cloneObject(target[key])
+    };
+ 
+    return temp;
+ };
+
+/**
  * object(JSON)의 키 기준으로 그룹핑을 하여, 하나의 object를 반환해줍니다. 
  * @param {objectName} target 
  * @param {objectKey | string} property 

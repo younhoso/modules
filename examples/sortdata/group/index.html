@@ -20,11 +20,11 @@
                 { id: 2, name: 'Jane', actor:'toto', alias: 'dddd', age: 21 },
                 { id: 3, name: 'Jane', actor:'toto2', alias: 'dddd2', age: 21 },
                 { id: 4, name: 'captainAmerica', actor:'크리스 에반스1', alias: '캡틴 아메리카', age: 40 },
-                { id: 5, name: 'captainAmerica', actor:'크리스 에반스2', alias: '캡틴', age: 40 }
+                { id: 5, name: 'captainAmerica', actor:'크리스 에반스2', alias: '캡틴', age: 40 },
+                { id: 6, name: []}
             ];
 
             const age = tr.dataGroups(people, 'name', {group: true}) // age라는 키의 기준으로 그룹핑을 한다.
-            console.log(age)
 
             const tamplate = ((props) => {
                 const {name, actor, alias} = props;
@@ -46,6 +46,34 @@
             age['iroMan'].forEach(element => { // age라는 값중에 21이라는 것 안에 배열로 구룹핑되어 있다. 그것들을 forEach로 가져와 화면에 뿌린다.
                 document.querySelector('.list-inner2').innerHTML += tamplate(element)
             });
+
+            const course2 = {
+                title: '자바스크립트 기초2',
+                language: 'JavaScript',
+            };
+
+            const prerequisite = [
+                    { name: 'iroMan', actor: '로버트 다우니 주니어', alias: '아이어맨', age: 40 },
+                    { name: 'Jane', actor:'toto', alias: 'dddd', age: 21 },
+                    { name: 'Jane', actor:'toto2', alias: 'dddd2', age: 21 }
+            ] // 배열 추가 
+
+            let course4 = {};
+
+            for(let key in course2){
+                course4[key] = course2[key];
+                course4.id = '1';
+                course4.prerequisite = prerequisite
+            };
+
+            course4.prerequisite.reduce((acc, cur, idx, arr) => {
+                cur.id = idx + 1;
+                return acc;
+            },[])
+
+            console.log(course4)
+            
+            
         })();
     </script>
 </body>
