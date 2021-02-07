@@ -1,4 +1,5 @@
 (function() {
+    console.log(tr)
     new tr.Accordions ({
         targets: '.tr_item',
         event: 'click',                 // 이벤트 mouseenter와, click 2가지를 옵션으로 넣을수 있습니다.

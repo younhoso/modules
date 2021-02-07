@@ -1,5 +1,5 @@
 import {_tr} from '../Helpers/DomApi.js';
-import { gsap } from "gsap";
+import { TweenMax } from "gsap/all";
 
 export default class Accordions {
     /**
@@ -33,8 +33,8 @@ export default class Accordions {
                     const _selfSib = _tr(e.currentTarget).siblings().find('.tr_accordion')
                     const _self = _tr(e.currentTarget).find('.tr_accordion')
 
-                    gsap.to(_selfSib, {'height': '0'})
-                    gsap.to(_self, {'height': 'auto'})
+                    TweenMax.to(_selfSib, {'height': '0'})
+                    TweenMax.to(_self, {'height': 'auto'})
                 });
             },0);
 
