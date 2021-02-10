@@ -1,5 +1,5 @@
 import {_tr} from '../Helpers/DomApi.js'
-import {openWin, closeWinAt00} from './basic.js';
+import {openWin} from './basic.js';
 
 export default class Cookie {
     constructor(el) {
