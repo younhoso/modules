@@ -140,7 +140,8 @@ export default class Motion extends Swiper {
             
             /** Swiper의 마우스 slideChange 이벤트 */
             this.on('slideChange', (e) => {
-                cur.classList.contains('swiper-pagination-bullet-active') && handler(cur) 
+                cur.classList.contains('swiper-pagination-bullet-active') && handler(cur);
+                _tr('.swiper-pagination-bullet .strok').removeClass('paused'); 
             });
             
             /** 최최 리프레쉬 시점에 1번째 활성화 */
