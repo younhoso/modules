@@ -13,7 +13,8 @@ import ToggleDynamic from "@/js/Actives/toggleDynamic";
 import BreakPoints from "@/js/Breakpoints/app";
 
 // Cookie
-import Cookie from "@/js/Cookie/app";
+import selfCookie from "@/js/Cookie/selfCookie";
+import otherCookie from "@/js/Cookie/otherCookie";
 
 // Custom
 import Motion from "@/js/Custom/app";
@@ -37,7 +38,8 @@ export {
     BreakPoints,
     comma, unComma, inputCommaSet, cloneObject, dataGroups, dataFilter, dataArray,
     DetectIE,
-    Cookie,
+    selfCookie,
+    otherCookie,
     Motion,
     Item,
     Ratio
