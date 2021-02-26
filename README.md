@@ -1,3 +1,3 @@
-# Getting Started With triplexlab #
+# Getting Started With triplexlab
 
-[TriplexLab API 문서](https://triplexlab-2.gitbook.io/triplexlab/)
+[TriplexLab API 문서](https://thdbsgh3443.gitbook.io/triplexlab/)
