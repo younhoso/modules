@@ -7,11 +7,14 @@ export default class Item extends Moreview {
     this.store = { idIdx: 0, startIdx: 0, endIdx: 0, totalNum: 0 };
     this.initHandler();
   }
+  /**
+   * 첫 렌더링 시점에 기본적으로 각 아이템에 클래스를 추가하고, 넘어온 template를 뿌려주는 메소드.
+   */
   defaultload() {
     const { startEl, endEl, eventEl } = this.el.targets;
-    const { effect, additems, addClassName, template } = this.el;
+    const { additems, addClassName, template } = this.el;
     const eles = _tr(startEl).find(endEl);
-    const eventE = document.querySelector(eventEl);
+    const eventEls = _tr(eventEl)[0];
     eles.forEach((ele, idx) => {
       if (idx + 1 > additems) {
         ele.classList.add(addClassName);
@@ -19,13 +22,18 @@ export default class Item extends Moreview {
     });
 
     this.store.totalNum = eles.length;
-    eventE.innerHTML = template(0, additems, this.store.totalNum);
+    eventEls.innerHTML = template(0, additems, this.store.totalNum);
   }
 
+  /**
+   * 아이템 활성화 관한 메소드.
+   * @type {object}
+   * @param {eventcurrent}
+   */
   activeItem(item) {
     super.active(item);
     const { startEl, endEl } = this.el.targets;
-    let { effect, additems, addClassName, template } = this.el;
+    let { additems, addClassName, template } = this.el;
     const eles = _tr(startEl).find(endEl);
     const totalIdx = parseInt(item.querySelector('.total').innerHTML);
     let currentIdx = parseInt(item.querySelector('.current').innerHTML);
@@ -54,13 +62,15 @@ export default class Item extends Moreview {
     item.innerHTML = template(this.store.idIdx, currentIdx, totalIdx);
   }
 
+  /**
+   * 특정 조건에만 실행만하는 메소드.
+   */
   initHandler() {
     this.defaultload();
     const { eventEl } = this.el.targets;
     const eventE = document.querySelector(eventEl);
 
     const handler = self => {
-      // 특정 조건에만 실행하는 함수
       this.activeItem(self);
     };
 

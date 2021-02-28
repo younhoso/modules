@@ -1,10 +1,10 @@
-import {_tr} from '../Helpers/DomApi.js'
+import { _tr } from '../Helpers/DomApi.js';
 import { Swiper, Navigation, Pagination, Scrollbar, Autoplay } from 'swiper';
 
 Swiper.use([Navigation, Pagination, Scrollbar, Autoplay]);
 
 export default class Motion extends Swiper {
-    /**
+  /**
      * Swiper 커스텀마이징
      * @type {object}
      * @param {string}
@@ -42,76 +42,80 @@ export default class Motion extends Swiper {
         }
      * });
      */
-    constructor(el, ops) {
-        super(el, ops);
-        this.el = el;
-        this.passedParams = ops;
-        this.paused = ops.paused;
-        this.store = {ele: null, slideEle: null, pageEl: null, dotEles: null, pausedValue: null}
-        this.current = null;
-        this.#initMotion();
-    };
-    /**
-     * Motion의 초기화 작업 
-     */
-    #initMotion() {
-        const {pagination, paused} = this.passedParams
-        this.store.ele = Array.from(_tr(this.el));
-        this.store.slideEle = Array.from(_tr(this.el).find('.swiper-slide'));
-        this.store.pageEl = _tr(pagination.el);
-        if(!pagination){ return false } else { this.store.dotEles = Array.from(_tr(pagination.el).find('.swiper-pagination-bullet')); }
-        
-        if(!paused){ 
-            this.#pageOnCircle(); 
-        } else { 
-            this.store.pausedValue = this.passedParams.paused; 
-            this.#paused(); 
-        }
-        this.#pageOnCircle();
-    };
+  constructor(el, ops) {
+    super(el, ops);
+    this.el = el;
+    this.passedParams = ops;
+    this.paused = ops.paused;
+    this.store = { ele: null, slideEle: null, pageEl: null, dotEles: null, pausedValue: null };
+    this.current = null;
+    this.#initMotion();
+  }
+  /**
+   * Motion의 초기화 작업
+   */
+  #initMotion() {
+    const { pagination, paused } = this.passedParams;
+    this.store.ele = Array.from(_tr(this.el));
+    this.store.slideEle = Array.from(_tr(this.el).find('.swiper-slide'));
+    this.store.pageEl = _tr(pagination.el);
+    if (!pagination) {
+      return false;
+    } else {
+      this.store.dotEles = Array.from(_tr(pagination.el).find('.swiper-pagination-bullet'));
+    }
 
-    get paused() {
-        return this._paused;
-    };
+    if (!paused) {
+      this.#pageOnCircle();
+    } else {
+      this.store.pausedValue = this.passedParams.paused;
+      this.#paused();
+    }
+    this.#pageOnCircle();
+  }
 
-    set paused(value) {
-        const {autoplay} = this.passedParams
+  get paused() {
+    return this._paused;
+  }
 
-        if(value && !autoplay){
-            throw Error('autoplay옵션과 같이 사용하는것을 권장합니다.')
-        }
-        this._paused = value
-    };
+  set paused(value) {
+    const { autoplay } = this.passedParams;
 
-    /**
-     * 활성화 관한 메소드
-     * @param {object} 현재 활성화된 이벤트 객체
-     */
-    #active(item) {
-        const {addClassName} = this.passedParams.pagination
+    if (value && !autoplay) {
+      throw Error('autoplay옵션과 같이 사용하는것을 권장합니다.');
+    }
+    this._paused = value;
+  }
 
-        item.classList.add(addClassName) //기본적인 class 추가 기능
-        this.current = item
-    };
+  /**
+   * 활성화 관한 메소드
+   * @param {object} 현재 활성화된 이벤트 객체
+   */
+  #active(item) {
+    const { addClassName } = this.passedParams.pagination;
 
-    /**
-     * 비활성화 관한 메소드
-     * @param {object} 현재 비활성화된 이벤트 객체
-     */
-    #unactive(item) {
-        const {addClassName} = this.passedParams.pagination
-        item.classList.remove(addClassName) //기본적인 class 삭제 기능
-    };
+    item.classList.add(addClassName); //기본적인 class 추가 기능
+    this.current = item;
+  }
 
-    /**
-     * dotCircle 옵션 기능 구현
-     */
-    #pageOnCircle() {
-        const {dotEles} = this.store;
-        const {dotCircle, circleSize, strokeColor, strokeWidth, dotColor} = this.passedParams.pagination
+  /**
+   * 비활성화 관한 메소드
+   * @param {object} 현재 비활성화된 이벤트 객체
+   */
+  #unactive(item) {
+    const { addClassName } = this.passedParams.pagination;
+    item.classList.remove(addClassName); //기본적인 class 삭제 기능
+  }
 
-        const dotCircleTemplate = () => {
-            return `
+  /**
+   * dotCircle 옵션 기능 구현
+   */
+  #pageOnCircle() {
+    const { dotEles } = this.store;
+    const { dotCircle, circleSize, strokeColor, strokeWidth, dotColor } = this.passedParams.pagination;
+
+    const dotCircleTemplate = () => {
+      return `
                 <a href="#0">
                     <svg class="circle" width="${circleSize}" viewBox="0 0 16 16">
                         <circle class="strok" cx="8" cy="8" r="6.5" fill="none" transform="rotate(-90 8 8)" stroke="${strokeColor}" stroke-opacity="1" stroke-width="${strokeWidth}px"></circle>
@@ -119,44 +123,45 @@ export default class Motion extends Swiper {
                     </svg>
                 </a>
             `;
-        };
-        
-        /** 
-         * 활성화, 비활성화 되는 함수 
-         * @param {HTMLElement}
-        */
-        const handler = (self) => {
-            this.current && this.#unactive(this.current); //클래스 비활성화
-            this.#active(self); // 클래스 활성화
-        };
-        
-        dotCircle && dotEles.reduce((acc, cur, idx, arr) => {
-            _tr(cur).css({width:"auto",height:"auto",background:"transparent"});
-            cur.innerHTML = dotCircleTemplate();
-            /** dot클릭 이벤트 */
-            _tr(cur).on('click', (e) => {
-                handler(e.currentTarget)
-            });
-            
-            /** Swiper의 마우스 slideChange 이벤트 */
-            this.on('slideChange', (e) => {
-                cur.classList.contains('swiper-pagination-bullet-active') && handler(cur);
-                _tr('.swiper-pagination-bullet .strok').removeClass('paused'); 
-            });
-            
-            /** 최최 리프레쉬 시점에 1번째 활성화 */
-            this.#active(arr[0])
-            return acc;
-        },0);
     };
 
     /**
-     * paused 옵션 기능 구현
+     * 활성화, 비활성화 되는 함수
+     * @param {HTMLElement}
      */
-    #paused() {
-        const {pausedEl, pausedSize, strokePausedColor, strokePausedWidth, pausedColor, playColor} = this.store.pausedValue
-        const stopTemplate = () => {
-            return `
+    const handler = self => {
+      this.current && this.#unactive(this.current); //클래스 비활성화
+      this.#active(self); // 클래스 활성화
+    };
+
+    dotCircle &&
+      dotEles.reduce((acc, cur, idx, arr) => {
+        _tr(cur).css({ width: 'auto', height: 'auto', background: 'transparent' });
+        cur.innerHTML = dotCircleTemplate();
+        /** dot클릭 이벤트 */
+        _tr(cur).on('click', e => {
+          handler(e.currentTarget);
+        });
+
+        /** Swiper의 마우스 slideChange 이벤트 */
+        this.on('slideChange', e => {
+          cur.classList.contains('swiper-pagination-bullet-active') && handler(cur);
+          _tr('.swiper-pagination-bullet .strok').removeClass('paused');
+        });
+
+        /** 최최 리프레쉬 시점에 1번째 활성화 */
+        this.#active(arr[0]);
+        return acc;
+      }, 0);
+  }
+
+  /**
+   * paused 옵션 기능 구현
+   */
+  #paused() {
+    const { pausedEl, pausedSize, strokePausedColor, strokePausedWidth, pausedColor, playColor } = this.store.pausedValue;
+    const stopTemplate = () => {
+      return `
                 <svg width="${pausedSize}" height="${pausedSize}" viewBox="0 0 31 31">
                     <g fill="none" fill-rule="evenodd">
                         <circle cx="15.5" cy="15.5" r="12.5" stroke="${strokePausedColor}" stroke-width="${strokePausedWidth}"/>
@@ -166,9 +171,9 @@ export default class Motion extends Swiper {
                     </g>
                 </svg>
             `;
-        };
-        const playTemplate = () => {
-            return `
+    };
+    const playTemplate = () => {
+      return `
                 <svg width="${pausedSize}" height="${pausedSize}" viewBox="0 0 31 31">
                     <g fill="none" fill-rule="evenodd">
                         <circle cx="15.5" cy="15.5" r="12.5" stroke="${strokePausedColor}" stroke-width="${strokePausedWidth}"/>
@@ -176,24 +181,24 @@ export default class Motion extends Swiper {
                     </g>
                 </svg>
             `;
-        };
-
-        _tr(pausedEl).html(`<a class="swiper-btn paused active" href="#0"></a>`);
-        _tr(pausedEl).find('.paused').html(stopTemplate());
-
-        /** 정지버튼 | 재생버튼 클릭 이벤트 */
-        _tr('.paused').on('click', (e) => {
-            if(_tr(e.currentTarget).hasClass('active')) {
-                _tr(e.currentTarget).removeClass('active');
-                _tr(e.currentTarget).html(playTemplate());
-                _tr('.swiper-pagination-bullet-active .strok').addClass('paused');
-                this.autoplay.stop();
-            } else {
-                _tr(e.currentTarget).addClass('active');
-                _tr(e.currentTarget).html(stopTemplate());
-                _tr('.swiper-pagination-bullet-active .strok').removeClass('paused');
-                this.autoplay.start();
-            }
-        });
     };
+
+    _tr(pausedEl).html(`<a class="swiper-btn paused active" href="#0"></a>`);
+    _tr(pausedEl).find('.paused').html(stopTemplate());
+
+    /** 정지버튼 | 재생버튼 클릭 이벤트 */
+    _tr('.paused').on('click', e => {
+      if (_tr(e.currentTarget).hasClass('active')) {
+        _tr(e.currentTarget).removeClass('active');
+        _tr(e.currentTarget).html(playTemplate());
+        _tr('.swiper-pagination-bullet-active .strok').addClass('paused');
+        this.autoplay.stop();
+      } else {
+        _tr(e.currentTarget).addClass('active');
+        _tr(e.currentTarget).html(stopTemplate());
+        _tr('.swiper-pagination-bullet-active .strok').removeClass('paused');
+        this.autoplay.start();
+      }
+    });
+  }
 }

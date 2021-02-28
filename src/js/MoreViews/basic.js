@@ -24,11 +24,11 @@ export default class Moreview extends Actives {
     }
     this._additems = value.additems;
   }
-
+  /**
+   * 활성화 관한 메소드
+   * @param {object} 현재 활성화된 이벤트 객체
+   */
   active(item) {
     super.active(item);
-  }
-  unactive(item) {
-    this.current && super.unactive(item);
   }
 }
