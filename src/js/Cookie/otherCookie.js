@@ -1,9 +1,9 @@
-import {_tr} from '../Helpers/DomApi.js'
-import {openWin, closeWinAt00} from './basic.js';
+import { _tr } from '../Helpers/DomApi.js';
+import { openWin, closeWinAt00 } from './basic.js';
 import Cookie from './app.js';
 
-export default class otherCookie extends Cookie{
-    /**
+export default class otherCookie extends Cookie {
+  /**
      * 체크버튼 클릭후, 닫기버튼 클릭으로 실행되는 메소드
      * @type {object}
      * @param {Options}
@@ -19,32 +19,37 @@ export default class otherCookie extends Cookie{
             enddate: '2021/12/31 23:00:00',     // 끝나는 날짜와 시간
         });
     */
-    constructor(el) {
-        super(el)
-        this.el = el;
-        this.store = {idx:null, current: null}
-        this.otherCookie();
-    }
-    
-    otherCookie() {
-        const {cookiename, daying, startdate, enddate} = this.el;
-        const {startEl, endEl, eventEl} = this.el.targets;
+  constructor(el) {
+    super(el);
+    this.el = el;
+    this.store = { idx: null, current: null };
+    this.otherCookie();
+  }
 
-        const eventEls = _tr(eventEl)
-        const inputCheck = _tr(startEl).find(endEl);
+  /** 자기 자신 외의 쿠키 메소드. */
+  otherCookie() {
+    const { cookiename, daying, startdate, enddate } = this.el;
+    const { startEl, endEl, eventEl } = this.el.targets;
 
-        eventEls.on('click', (e) => {             // closeEvent 설정
-            e.preventDefault(); e.stopPropagation();
-            this.store.idx = _tr(eventEl).indexOf(e.currentTarget)
+    const eventEls = _tr(eventEl);
+    const inputCheck = _tr(startEl).find(endEl);
 
-            Array.from(inputCheck).reduce((acc, cur, idx) => {
-                if(cur.checked){ 
-                    closeWinAt00(cookiename, daying);           // 오늘 하루동안 보지 않기 체크하면, closeWinAt00('아이디', 하루) 정오 00:00 시 기준입니다.
-                }
-                return acc;
-            },0);            
-        });
+    eventEls.on('click', e => {
+      // closeEvent 설정
+      e.preventDefault();
+      e.stopPropagation();
+      this.store.idx = _tr(eventEl).indexOf(e.currentTarget);
 
-        startdate && enddate ? super.cookieNameAdd(cookiename) : openWin(cookiename)  //startdate && enddate는 값이 존재하냐 안 하냐에 따라서 Boolean으로 사용한다.
-    };
-};
+      Array.from(inputCheck).reduce((acc, cur, idx) => {
+        if (cur.checked) {
+          /** 오늘 하루동안 보지 않기 체크하면, closeWinAt00('아이디', 하루) 정오 00:00 시 기준입니다. */
+          closeWinAt00(cookiename, daying);
+        }
+        return acc;
+      }, 0);
+    });
+
+    /** startdate && enddate 값이 존재하냐 안 하냐에 따라서 Boolean으로 사용한다. */
+    startdate && enddate ? super.cookieNameAdd(cookiename) : openWin(cookiename);
+  }
+}

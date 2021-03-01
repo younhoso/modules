@@ -1,5 +1,6 @@
 // MoreViews
-import Item from "@/js/MoreViews/item";
-import Ratio from "@/js/MoreViews/ratio";
+import Item from '@/js/MoreViews/item';
+import Ratio from '@/js/MoreViews/ratio';
+import ServerCommunication from '@/js/MoreViews/serverCommunication';
 
-export { Item, Ratio }
+export { Item, Ratio, ServerCommunication };

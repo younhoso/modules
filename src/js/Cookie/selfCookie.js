@@ -1,9 +1,9 @@
-import {_tr} from '../Helpers/DomApi.js'
-import {openWin, closeWinAt00} from './basic.js';
+import { _tr } from '../Helpers/DomApi.js';
+import { openWin, closeWinAt00 } from './basic.js';
 import Cookie from './app.js';
 
-export default class selfCookie extends Cookie{
-    /**
+export default class selfCookie extends Cookie {
+  /**
      * 체크버튼 기준으로 실행되는 메소드
      * @type {object}
      * @param {*}
@@ -26,24 +26,26 @@ export default class selfCookie extends Cookie{
             daying: 1                           // 오늘 하루 안보기의 (1 day) 정오 00:00 시 기준입니다.
         });
     */
-    constructor(el) {
-        super(el)
-        this.el = el;
-        this.store = {idx:null, current: null}
-        this.selfCookie();
-    };
+  constructor(el) {
+    super(el);
+    this.el = el;
+    this.store = { idx: null, current: null };
+    this.selfCookie();
+  }
+  /** 자기 자신의 쿠키 메소드. */
+  selfCookie() {
+    const { cookiename, daying, startdate, enddate } = this.el;
+    const { eventEl } = this.el.targets;
 
-    selfCookie() {
-        const {cookiename, daying, startdate, enddate} = this.el;
-        const {eventEl} = this.el.targets;
+    const eventEls = document.querySelector(eventEl);
+    eventEls.addEventListener('click', e => {
+      // closeEvent 설정
+      e.preventDefault();
+      e.stopPropagation();
+      this.store.idx = _tr(eventEl).indexOf(e.currentTarget);
+      closeWinAt00(cookiename, daying); // closeWinAt00('아이디', 하루) 정오 00:00 시 기준입니다.
+    });
 
-        const eventEls = document.querySelector(eventEl)
-        eventEls.addEventListener('click', (e) => {             // closeEvent 설정
-            e.preventDefault(); e.stopPropagation();
-            this.store.idx = _tr(eventEl).indexOf(e.currentTarget)
-            closeWinAt00(cookiename, daying);                   // closeWinAt00('아이디', 하루) 정오 00:00 시 기준입니다.
-        });
-
-        startdate && enddate ? super.cookieNameAdd(cookiename) : openWin(cookiename)  //startdate && enddate는 값이 존재하냐 안 하냐에 따라서 Boolean으로 사용한다.
-    };
-};
+    startdate && enddate ? super.cookieNameAdd(cookiename) : openWin(cookiename); // startdate && enddate는 값이 존재하냐 안 하냐에 따라서 Boolean으로 사용한다.
+  }
+}

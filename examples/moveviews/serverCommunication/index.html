@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="text/css" rel="stylesheet" href="./app.css" />
+    <title>serverCommunication</title>
+  </head>
+  <body>
+    <h1 class="content_tit">serverCommunication</h1>
+    <div class="js-load main">
+      <div class="content_component">
+        <ul>
+          <li class="js-load-list">1</li>
+          <li class="">2</li>
+          <li class="">3</li>
+          <li class="">4</li>
+        </ul>
+      </div>
+
+      <div class="btn-wrap">111</div>
+    </div>
+
+    <script src="/dist/MoreViews.min.js"></script>
+    <script>
+      (function () {
+        console.log(tr);
+
+        const ratioMore = {
+          targets: {
+            startEl: '.js-load', // 컴포넌트 상의 루트(Element)를 시작 선택자로 선언 합니다.
+            endEl: '.js-load-list', // 컴포넌트 상의 리스트들(Element)를 끝나는 선택자로 선언 합니다.
+            eventEl: '.btn-wrap', // 더보고 기능 추가할경우, 클릭 대상인 선택자를 선언 합니다.
+          },
+        };
+
+        new tr.ServerCommunication(ratioMore);
+      })();
+    </script>
+  </body>
+</html>

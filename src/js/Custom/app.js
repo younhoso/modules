@@ -155,9 +155,7 @@ export default class Motion extends Swiper {
       }, 0);
   }
 
-  /**
-   * paused 옵션 기능 구현
-   */
+  /** paused 옵션 기능 구현 */
   #paused() {
     const { pausedEl, pausedSize, strokePausedColor, strokePausedWidth, pausedColor, playColor } = this.store.pausedValue;
     const stopTemplate = () => {
