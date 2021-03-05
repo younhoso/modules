@@ -1,6 +1,6 @@
 import { _tr } from '../Helpers/DomApi.js';
+import { transition } from '../Helpers/common.js';
 import Actives from '../Helpers/basic.js';
-import { TweenMax } from 'gsap/all';
 
 export default class Tabs extends Actives {
   /**
@@ -61,7 +61,7 @@ export default class Tabs extends Actives {
     this.store.target.on('click', e => {
       e.preventDefault();
       handler(e.currentTarget);
-      TweenMax.to('.tr_line_item', { x: w * this.store.idx });
+      transition('.tr_line_item', { x: w * this.store.idx }, 0.4);
     });
 
     handler(this.store.target[0]);

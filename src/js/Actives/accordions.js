@@ -1,6 +1,6 @@
 import Actives from '../Helpers/basic';
 import { _tr } from '../Helpers/DomApi.js';
-import { TweenMax } from 'gsap/all';
+import { transition } from '../Helpers/common.js';
 
 export default class Accordions {
   /**
@@ -17,20 +17,14 @@ export default class Accordions {
     */
   constructor(el) {
     this.el = el;
-    this.store = { ele: null, eleSib: null, self: null, targetIdx: null, gsapSelf: null, gsapSelfSib: null };
+    this.store = { ele: null, eleSib: null, self: null, targetIdx: null };
     this.initHandler();
-  }
-  activeItem(self) {
-    this.store.gsapSelf = TweenMax.to(self, 0.4, { height: 'auto' });
-  }
-
-  unActiveItem(selfSib) {
-    this.store.gsapSelfSib = TweenMax.to(selfSib, 0.4, { height: '0' });
   }
 
   /** 특정 조건에만 실행하는 메소드. */
   initHandler() {
     const { targets, event, firstItemActive, autoplay, loop } = this.el;
+
     const target = _tr(targets);
     this.store.eleSib = target.siblings().find('.tr_accordion');
     this.store.ele = target.find('.tr_accordion');
@@ -45,19 +39,19 @@ export default class Accordions {
           const _selfSib = _tr(e.currentTarget).siblings().find('.tr_accordion');
           const _self = _tr(e.currentTarget).find('.tr_accordion');
 
-          this.unActiveItem(_selfSib);
-          this.activeItem(_self);
+          transition(_selfSib, { height: '0' }, 0.4);
+          transition(_self, { height: 'auto' }, 0.4);
         });
       }, 0);
 
       if (firstItemActive) {
         this.store.eleSib.css('height', 0);
-        this.activeItem(this.store.ele[0]);
+        transition(this.store.ele[0], { height: 'auto' }, 0.4);
       } else if (autoplay) {
         this.store.eleSib.css('height', 0);
         Actives.autoplay(this.store.ele, autoplay, loop, i => {
-          this.unActiveItem(this.store.eleSib);
-          this.activeItem(this.store.ele[i]);
+          transition(this.store.eleSib, { height: '0' }, 0.4);
+          transition(this.store.ele[i], { height: 'auto' }, 0.4);
         });
       } else {
         this.store.eleSib.css('height', 0);

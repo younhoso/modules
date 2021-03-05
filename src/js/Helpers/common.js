@@ -1,3 +1,5 @@
+import { TweenMax } from 'gsap/all';
+
 /**
  * 3번째 자리애 자동으로 ,쉼표를 넣어서 반환해줍니다.
  * @param {value | string}
@@ -116,4 +118,14 @@ export const dataArray = target => {
     }
     return acc;
   }, []);
+};
+
+/**
+ * 에니메이션 공통으로 사용하는 함수.
+ * @param {object , number}
+ * @example
+ * _tr('...').transition(options, duration)
+ */
+export const transition = (target, options, duration = 0.5) => {
+  TweenMax.to(target, duration, options);
 };

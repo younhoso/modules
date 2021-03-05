@@ -62,16 +62,16 @@ export default class Actives {
   }
   /**
    * 자동실행, loop 관한 메소드(static 메소드).
-   * @type {object}
-   * @param {Element, Number, boolean, callback}
+   * @type {(object | Array), Number, boolean, callback}
+   * @param {Elements, autoplay, loop, callback}
    */
-  static autoplay(item, autoplay, loop, func) {
+  static autoplay(item, autoplay, loop, callback) {
     let timeId;
     let n = 0;
 
     const autos = () => {
       if (loop && n >= item.length) n = 0;
-      n >= item.length ? clearInterval(timeId) : (func(n), n++);
+      n >= item.length ? clearInterval(timeId) : (callback(n), n++);
     };
 
     timeId = setInterval(autos, autoplay);
