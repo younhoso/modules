@@ -1,4 +1,3 @@
-import Actives from '../Helpers/basic';
 import { _tr } from '../Helpers/DomApi.js';
 import { anis } from '../Helpers/common.js';
 
@@ -58,9 +57,7 @@ export default class Accordions {
       }, 0);
 
       if ('autoplay' in this.el) {
-        this.#autoplay(this.store.ele, autoplay, loop, i => {
-          // this.store.curIdx = i + 1;
-
+        this.#autoplay(this.store.ele, autoplay, loop, () => {
           anis(this.store.eleSib, duration, { height: '0' });
           anis(this.store.ele[this.store.curIdx], duration, { height: 'auto' });
           console.log(this.store.curIdx);

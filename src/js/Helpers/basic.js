@@ -13,33 +13,6 @@ export default class Actives {
     this.store = { length: 0 };
   }
   /**
-   * 기본적인 인덱스번째 실행
-   */
-  static indexDefault() {
-    const { targets } = this.el;
-    if (this.store.currentIndex < 0) this.store.currentIndex = 0; //총 길이보다 작으면 멈춘다.
-    if (this.store.currentIndex > this.store.length) this.store.currentIndex = this.store.length; //총 길이보다 크면 멈춘다.
-
-    const arrItem = Array.from(document.querySelectorAll(targets));
-    this.store.length = arrItem.length - 1;
-  }
-  /**
-   * 인덱스번째 무한 반복 실행
-   */
-  static indexLoop(target, idx) {
-    // const { targets } = this.el;
-    let length = 0,
-      currentIndex = 0;
-
-    if (idx < 0) currentIndex = length; //총 길이보다 작으면 다시 가장 마지막번째가 된다.
-    if (idx > length) currentIndex = 0; //총 길이보다 크면 다시 0번째로 된다.
-
-    const arrItem = Array.from(target);
-    length = arrItem.length - 1;
-    console.log(arrItem);
-    return currentIndex;
-  }
-  /**
    * 활성화 관한 메소드
    * @type {object}
    * @param {eventcurrent}
