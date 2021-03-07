@@ -1,5 +1,5 @@
 import { _tr } from '../Helpers/DomApi.js';
-import { transition } from '../Helpers/common.js';
+import { anis } from '../Helpers/common.js';
 import Actives from '../Helpers/basic.js';
 
 export default class Tabs extends Actives {
@@ -61,7 +61,7 @@ export default class Tabs extends Actives {
     this.store.target.on('click', e => {
       e.preventDefault();
       handler(e.currentTarget);
-      transition('.tr_line_item', { x: w * this.store.idx }, 0.4);
+      anis('.tr_line_item', 0.4, { x: w * this.store.idx });
     });
 
     handler(this.store.target[0]);

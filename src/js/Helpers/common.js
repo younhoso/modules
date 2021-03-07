@@ -124,8 +124,8 @@ export const dataArray = target => {
  * 에니메이션 공통으로 사용하는 함수.
  * @param {object , number}
  * @example
- * _tr('...').transition(options, duration)
+ * _tr('...').anis(options, duration)
  */
-export const transition = (target, options, duration = 0.5) => {
+export const anis = (target, duration = 0.4, options) => {
   TweenMax.to(target, duration, options);
 };

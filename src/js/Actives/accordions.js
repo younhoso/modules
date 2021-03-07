@@ -1,6 +1,6 @@
 import Actives from '../Helpers/basic';
 import { _tr } from '../Helpers/DomApi.js';
-import { transition } from '../Helpers/common.js';
+import { anis } from '../Helpers/common.js';
 
 export default class Accordions {
   /**
@@ -17,13 +17,13 @@ export default class Accordions {
     */
   constructor(el) {
     this.el = el;
-    this.store = { ele: null, eleSib: null, self: null, targetIdx: null };
+    this.store = { ele: null, eleSib: null, self: null, targetIdx: null, curIdx: null };
     this.initHandler();
   }
 
   /** 특정 조건에만 실행하는 메소드. */
   initHandler() {
-    const { targets, event, firstItemActive, autoplay, loop } = this.el;
+    const { targets, event, duration, firstItemActive, autoplay, loop } = this.el;
 
     const target = _tr(targets);
     this.store.eleSib = target.siblings().find('.tr_accordion');
@@ -38,20 +38,23 @@ export default class Accordions {
           e.stopPropagation();
           const _selfSib = _tr(e.currentTarget).siblings().find('.tr_accordion');
           const _self = _tr(e.currentTarget).find('.tr_accordion');
+          this.store.curIdx = target.indexOf(cur);
+          // console.log(this.store.curIdx);
 
-          transition(_selfSib, { height: '0' }, 0.4);
-          transition(_self, { height: 'auto' }, 0.4);
+          anis(_selfSib, duration, { height: '0' });
+          anis(_self, duration, { height: 'auto' });
         });
       }, 0);
 
       if (firstItemActive) {
         this.store.eleSib.css('height', 0);
-        transition(this.store.ele[0], { height: 'auto' }, 0.4);
+        anis(this.store.ele[0], duration, { height: 'auto' });
       } else if (autoplay) {
         this.store.eleSib.css('height', 0);
         Actives.autoplay(this.store.ele, autoplay, loop, i => {
-          transition(this.store.eleSib, { height: '0' }, 0.4);
-          transition(this.store.ele[i], { height: 'auto' }, 0.4);
+          anis(this.store.eleSib, duration, { height: '0' });
+          anis(this.store.ele[i], duration, { height: 'auto' });
+          // console.log(i);
         });
       } else {
         this.store.eleSib.css('height', 0);
