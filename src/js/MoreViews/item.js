@@ -1,4 +1,3 @@
-import { autoplay } from '../Helpers/autoplay.js';
 import { _tr } from '../Helpers/DomApi.js';
 import Moreview from './basic.js';
 

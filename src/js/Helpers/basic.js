@@ -33,20 +33,4 @@ export default class Actives {
 
     this.current && item.classList.remove(addClassName); //기본적인 class 삭제 기능
   }
-  /**
-   * 자동실행, loop 관한 메소드(static 메소드).
-   * @type {(object | Array), Number, boolean, callback}
-   * @param {Elements, autoplay, loop, callback}
-   */
-  static autoplay(item, autoplay, loop, callback) {
-    let timeId;
-    let n = 0;
-
-    const autos = () => {
-      if (loop && n >= item.length) n = 0;
-      n >= item.length ? clearInterval(timeId) : (callback(n), n++);
-    };
-
-    timeId = setInterval(autos, autoplay);
-  }
 }

@@ -16,13 +16,12 @@ export default class Accordions {
     */
   constructor(el) {
     this.el = el;
-    this.store = { ele: null, eleSib: null, self: null, targetIdx: null, curIdx: 0 };
+    this.store = { ele: null, eleSib: null, self: null, targetIdx: null, controlEvent: null, curIdx: 0 };
     this.initHandler();
   }
 
   #autoplay(item, autoplay, loop, callback) {
     let timeId;
-
     const autos = () => {
       if (loop && this.store.curIdx >= item.length) this.store.curIdx = 0;
       this.store.curIdx >= item.length ? clearInterval(timeId) : (callback(this.store.curIdx), this.store.curIdx++);
@@ -41,15 +40,16 @@ export default class Accordions {
 
     /**  이벤트 핸들러 함수(즉시 실행) */
     (() => {
-      target.reduce((acc, cur, idx, src) => {
+      target.reduce((acc, cur, idx) => {
         this.store.targetIdx = idx;
         cur.addEventListener(event, e => {
           e.preventDefault();
           e.stopPropagation();
+          // this.store.curIdx = target.indexOf(cur);
+          this.store.controlEvent = true;
+
           const _selfSib = _tr(e.currentTarget).siblings().find('.tr_accordion');
           const _self = _tr(e.currentTarget).find('.tr_accordion');
-          this.store.curIdx = target.indexOf(cur);
-          // console.log(this.store.curIdx);
 
           anis(_selfSib, duration, { height: '0' });
           anis(_self, duration, { height: 'auto' });
@@ -57,10 +57,12 @@ export default class Accordions {
       }, 0);
 
       if ('autoplay' in this.el) {
+        this.store.eleSib.css('height', 0);
         this.#autoplay(this.store.ele, autoplay, loop, () => {
+          if (this.store.controlEvent) return false;
           anis(this.store.eleSib, duration, { height: '0' });
           anis(this.store.ele[this.store.curIdx], duration, { height: 'auto' });
-          console.log(this.store.curIdx);
+          // console.log(this.store.curIdx);
         });
       } else {
         this.store.curIdx = 0;
