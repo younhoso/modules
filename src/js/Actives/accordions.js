@@ -22,16 +22,6 @@ export default class Accordions extends Actives {
     this.initHandler();
   }
 
-  #autoplay(item, autoplay, loop, callback) {
-    let timeId;
-    const autos = () => {
-      if (loop && this.store.curIdx >= item.length) this.store.curIdx = 0;
-      this.store.curIdx >= item.length ? clearInterval(timeId) : (callback(this.store.curIdx), this.store.curIdx++);
-    };
-
-    timeId = setInterval(autos, autoplay);
-  }
-
   /**
    * Actives클래스의 오버라이딩 (활성화 관한 메소드).
    * @type {DOM}

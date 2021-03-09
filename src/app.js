@@ -26,7 +26,6 @@ import { DetectIE } from '@/js/Helpers/IE';
 // MoreViews
 import Item from '@/js/MoreViews/item';
 import Ratio from '@/js/MoreViews/ratio';
-import ServerCommunication from '@/js/MoreViews/serverCommunication';
 /** js import ED */
 
 export { reset };
@@ -48,5 +47,4 @@ export {
   Motion,
   Item,
   Ratio,
-  ServerCommunication,
 };
