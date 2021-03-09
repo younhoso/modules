@@ -1,7 +1,8 @@
 import { _tr } from '../Helpers/DomApi.js';
 import { anis } from '../Helpers/common.js';
+import Actives from '../Helpers/basic.js';
 
-export default class Accordions {
+export default class Accordions extends Actives {
   /**
     * @param {Options | object}
     * @example
@@ -15,6 +16,7 @@ export default class Accordions {
       });
     */
   constructor(el) {
+    super(el);
     this.el = el;
     this.store = { ele: null, eleSib: null, self: null, targetIdx: null, controlEvent: null, curIdx: 0 };
     this.initHandler();
@@ -30,17 +32,42 @@ export default class Accordions {
     timeId = setInterval(autos, autoplay);
   }
 
+  /**
+   * Actives클래스의 오버라이딩 (활성화 관한 메소드).
+   * @type {DOM}
+   * @param {event | current}
+   */
+  active(item) {
+    const { duration } = this.el;
+    super.active(item);
+
+    anis(item, duration, { height: 'auto' });
+    this.current = item;
+  }
+
+  /**
+   * Actives클래스의 오버라이딩 (비활성화 관한 메소드).
+   * @type {DOM}
+   * @param {event | current}
+   */
+  unactive(item) {
+    const { duration } = this.el;
+    super.unactive(item);
+
+    this.current && anis(item, duration, { height: '0' });
+  }
+
   /** 특정 조건에만 실행하는 메소드. */
   initHandler() {
-    const { targets, event, duration, firstItemActive, autoplay, loop } = this.el;
+    const { targets, event, firstItemActive, autoplay, loop } = this.el;
 
-    const target = _tr(targets);
-    this.store.eleSib = target.siblings().find('.tr_accordion');
-    this.store.ele = target.find('.tr_accordion');
+    const items = _tr(targets).find('.tr_item');
+    this.store.eleSib = items.siblings().find('.tr_accordion');
+    this.store.ele = items.find('.tr_accordion');
 
     /**  이벤트 핸들러 함수(즉시 실행) */
     (() => {
-      target.reduce((acc, cur, idx) => {
+      items.reduce((acc, cur, idx) => {
         this.store.targetIdx = idx;
         cur.addEventListener(event, e => {
           e.preventDefault();
@@ -51,18 +78,17 @@ export default class Accordions {
           const _selfSib = _tr(e.currentTarget).siblings().find('.tr_accordion');
           const _self = _tr(e.currentTarget).find('.tr_accordion');
 
-          anis(_selfSib, duration, { height: '0' });
-          anis(_self, duration, { height: 'auto' });
+          this.unactive(_selfSib);
+          this.active(_self);
         });
       }, 0);
 
       if ('autoplay' in this.el) {
         this.store.eleSib.css('height', 0);
-        this.#autoplay(this.store.ele, autoplay, loop, () => {
+        super.autoplay({ targets: this.store.ele, duration: autoplay, loop: loop }, i => {
           if (this.store.controlEvent) return false;
-          anis(this.store.eleSib, duration, { height: '0' });
-          anis(this.store.ele[this.store.curIdx], duration, { height: 'auto' });
-          // console.log(this.store.curIdx);
+          this.unactive(this.store.eleSib);
+          this.active(this.store.ele[i]);
         });
       } else {
         this.store.curIdx = 0;
@@ -70,7 +96,7 @@ export default class Accordions {
 
       if (firstItemActive) {
         this.store.eleSib.css('height', 0);
-        anis(this.store.ele[0], duration, { height: 'auto' });
+        this.active(this.store.ele[0]);
         this.store.curIdx += 1;
       }
     })();
