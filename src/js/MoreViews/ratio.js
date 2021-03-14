@@ -28,8 +28,8 @@ export default class Ratio extends Moreview {
     if (this.store.remainder === 0) {
       // additems의 개수 와 아이템의 개수 가 맞아 떨어 졌을 경우
       eventE.innerHTML = template(0, 1, this.store.totalNum);
-    } else if (this.store.remainder < additems) {
-      // additems의 개수보다 아이템의 개수가 작을 경우
+    } else if (this.store.remainder < additems) { 
+      // additems의 개수보다 아이템의 개수가 작을 경우 (연속 더보기 클릭후 맨 마지막인 경우)
       eventE.innerHTML = template(0, 1, this.store.totalNum + 1);
     }
   }
@@ -71,7 +71,7 @@ export default class Ratio extends Moreview {
         return false;
       }
     } else if (this.store.remainder < additems) {
-      // additems의 개수보다 아이템의 개수가 작을 경우
+      // additems의 개수보다 아이템의 개수가 작을 경우 (연속 더보기 클릭후 맨 마지막인 경우)
       if (currentIdx >= this.store.totalNum + 1) {
         item.innerHTML = template(this.store.idIdx, currentIdx, totalIdx, addClassName);
         return false;

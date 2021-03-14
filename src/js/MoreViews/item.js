@@ -55,7 +55,7 @@ export default class Item extends Moreview {
     currentIdx += additems;
     this.store.idIdx += 1;
 
-    if (currentIdx >= eles.length) {
+    if (currentIdx >= eles.length) { // currentIdx의 개수보다 아이템의 개수가 작을 경우 (연속 더보기 클릭후 맨 마지막인 경우)
       item.innerHTML = template(this.store.idIdx, totalIdx, totalIdx, addClassName);
       return false;
     }
