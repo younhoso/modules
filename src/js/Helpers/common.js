@@ -109,7 +109,7 @@ export const dataFilter = (target, property) => {
  * @example
  * tr.dataArray(people)
  */
-export const dataArray = target => {
+export const dataArray = (target) => {
   const [...arrName] = target;
   return arrName.reduce((acc, cur, idx) => {
     for (let j = cur.length - 1; j >= 0; j--) {

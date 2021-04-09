@@ -1,5 +1,3 @@
-@import "../../../src/css/base/reset.css";
-
 .faq_component { 
     max-width: 1000px;
     padding-right: 30px;
@@ -69,14 +67,14 @@
     transition: all 0.2s ease-in-out;
  }
 
- .tr_accordion {
-    line-height: 1.1;
-    overflow: hidden;
+ .faq_item_content {
+   line-height: 1.1;
+   overflow: hidden;
  }
-
- .tr_accordion p {
-    border-top: 2px solid #f0f2f5;
-    padding: 20px;
+ 
+ .faq_item_content p {
+   border-top: 2px solid #f0f2f5;
+   padding: 20px;
  }
 
  .btn a{
