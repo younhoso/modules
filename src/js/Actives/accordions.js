@@ -42,11 +42,10 @@ export default class Accordions extends Actives {
    * @param {event | current}
    */
   unactive(item) {
-    const { firstItemActive, duration } = this.el;
+    const { duration } = this.el;
     super.unactive(item);
 
     this.current && anis(item, duration, { height: '0' });
-    firstItemActive || this.store.eleSib.css('height', 0);
   }
 
   /** 특정 조건에만 실행하는 메소드. */
@@ -95,7 +94,7 @@ export default class Accordions extends Actives {
         this.active(this.store.ele[0]);
         this.store.curIdx += 1;
       } else {
-        this.unactive(this.store.eleSib); 
+        this.store.eleSib.css('height', 0);
       }
     })();
   }
