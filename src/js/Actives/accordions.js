@@ -8,11 +8,13 @@ export default class Accordions extends Actives {
     * @example
     * new tr.Accordions ({
         targets: '.item',
-        event: 'click',                 // 이벤트 mouseenter와, click 2가지를 옵션으로 넣을수 있습니다.
-        addClassName: 'active',         // 넣고 싶은 클랙스 명
-        firstItemActive: true,          // 첫번째 아이템을 활성화 할건지 여부체크 true or false
-        autoplay: 800,
-        loop: true,
+        event: 'click', // 이벤트 mouseenter와, click 2가지를 옵션으로 넣을수 있습니다.
+        firstItemActive: true, // 첫번째 아이템을 활성화 할건지 여부체크 true or false
+        addClassName: 'active',
+        duration: 0.4, // 활성화되는 시간을 컨트롤 할수 있습니다.(기본 값으로 0.4초를 가지고 있습니다.)
+        autoplay: 1000, // 각각의 리스트를 자동으로 플레이를 시키고, 몇초 간격으로 할것인지 설정할수 있습니다.(autoplay property key가 없다면 자동플레이는 실행되지 않는다.)
+        additems: 5, // 자동플레이 항목 객수를 제안 할수 있습니다.
+        loop: false, // autoplay를 무한 반복 시킬것인지 여부체크 true or false (기본 값으로 false)
       });
     */
   constructor(el) {
@@ -48,7 +50,7 @@ export default class Accordions extends Actives {
 
   /** 특정 조건에만 실행하는 메소드. */
   initHandler() {
-    const { targets, event, firstItemActive, autoplay, loop } = this.el;
+    const { targets, event, firstItemActive, autoplay, additems, loop } = this.el;
 
     const items = _tr(targets).find('.tr_item');
     this.store.eleSib = items.siblings().find('.tr_acc_box');
@@ -74,8 +76,14 @@ export default class Accordions extends Actives {
         this.store.eleSib.css('height', 0);
         super.autoplay({ targets: this.store.ele, duration: autoplay, loop: loop }, i => {
           if (this.store.controlEvent) return false;
-          this.unactive(this.store.eleSib);
-          this.active(this.store.ele[i]);
+          if('additems' in this.el) {
+            // 자동플레이 항목 객수를 제안합니다.
+            additems - 1 >= i && (this.unactive(this.store.eleSib), this.active(this.store.ele[i]))
+          } else {
+            // 자동플레이 항목 객수를 제안하지 않습니다.
+            this.unactive(this.store.eleSib); 
+            this.active(this.store.ele[i]);
+          }
         });
       } else {
         this.store.curIdx = 0;
