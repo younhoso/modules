@@ -53,7 +53,7 @@ export default class Actives {
    * @type {DOM, boolean, function}
    * @param {Element, loop, callback }
    */
-  #indexLoop(targets, loop, callback) {
+  #indexLoop(targets, loop = false, callback) {
     if (loop && this.store.curIdx >= _tr(targets).length) this.store.curIdx = 0; //총 길이보다 크면 다시 0번째로 된다.
     // flase인 경우 (기본적으로 동작) 총 길이보다 크면 1씩 증가시키고, 현재인덱스값을 콜백인자에 전달한다.
     // true인 경우 무한 반복 기능이 취소 된다.
