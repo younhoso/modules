@@ -32,7 +32,6 @@ export default class Accordions extends Actives {
     super.active(item);
 
     anis(item, duration, { height: 'auto' });
-    this.current = item;
   }
 
   /**
@@ -52,21 +51,19 @@ export default class Accordions extends Actives {
     const { targets, event, firstItemActive, autoplay, loop } = this.el;
 
     const items = _tr(targets).find('.tr_item');
-    this.store.eleSib = items.siblings().find('.tr_accordion');
-    this.store.ele = items.find('.tr_accordion');
+    this.store.eleSib = items.siblings().find('.tr_acc_box');
+    this.store.ele = items.find('.tr_acc_box');
 
     /**  이벤트 핸들러 함수(즉시 실행) */
     (() => {
       items.reduce((acc, cur, idx) => {
         this.store.targetIdx = idx;
         cur.addEventListener(event, e => {
-          e.preventDefault();
-          e.stopPropagation();
-          // this.store.curIdx = target.indexOf(cur);
+          e.preventDefault(); e.stopPropagation();
           this.store.controlEvent = true;
 
-          const _selfSib = _tr(e.currentTarget).siblings().find('.tr_accordion');
-          const _self = _tr(e.currentTarget).find('.tr_accordion');
+          const _selfSib = _tr(e.currentTarget).siblings().find('.tr_acc_box');
+          const _self = _tr(e.currentTarget).find('.tr_acc_box');
 
           this.unactive(_selfSib);
           this.active(_self);

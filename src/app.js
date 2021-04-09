@@ -1,8 +1,3 @@
-/** css import ST */
-// base
-import reset from '@/css/base/reset.css';
-/** css import ED */
-
 /** js import ST */
 // Actives
 import Accordions from '@/js/Actives/accordions';
@@ -28,7 +23,11 @@ import Item from '@/js/MoreViews/item';
 import Ratio from '@/js/MoreViews/ratio';
 /** js import ED */
 
-export { reset };
+/** styles import ST */
+import styleMain from '@/styles/index';
+/** styles import ED */
+
+export {styleMain}
 export {
   Accordions,
   Tabs,
