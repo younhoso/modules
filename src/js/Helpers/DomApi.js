@@ -70,6 +70,13 @@ class DomApi extends $.BaseClass {
       return _tr(nextElements);
     })();
   }
+
+  offset(elem = this.el) {
+    return (() => {
+      elem = this.el
+      return document.querySelector(elem).getBoundingClientRect();
+    })();
+  }
 }
 
 export const _tr = selector => new DomApi(selector);
