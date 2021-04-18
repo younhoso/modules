@@ -39,7 +39,6 @@ export default class Tabprops extends Actives{
         const domThis = _tr('[data-tr]');
         const attrName = _tr('[model-tr]');
         const attrData = JSON.parse(domThis.data('tr'))
-        const val = attrName.val();
 
         const handler = (self) => {
             super.unactive(this.current); //클래스 비활성화
@@ -53,21 +52,27 @@ export default class Tabprops extends Actives{
         });
 
         attrName.on('change', (e) => {
-            if(!val) {
+            const val = _tr(e.target).val();
+            if(val) {
                 domThis.prop('disabled', false)
             } else {
                 domThis.prop('disabled', attrData.disabled);
             }
         });
-
-        domThis.prop('disabled', attrData.disabled);
-
+        
         if(data) {
             for(const key in data()){
                 const attrValue = attrName.attr('model-tr');
                 if(attrValue === key){
                     attrName.attr('value', data()[key])
                 }
+
+                if(!!data()[key]) {
+                    domThis.prop('disabled', false)
+                } else {
+                    domThis.prop('disabled', attrData.disabled);
+                }
+        
             } 
         }
 
