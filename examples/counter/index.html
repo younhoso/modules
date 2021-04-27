@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>counter</title>
+</head>
+<body>
+    <div class="navbar">
+        <img id="logo" src="images/logo.png" width="157">
+    </div>
+  
+      <div class="main">
+        <div class="container">
+          <!-- 만난지 며칠? -->
+          <h2>만난지 <span id="day-count">00</span>일째</h2>
+  
+          <div class="img-row">
+            <img src="images/female.png" width="148">
+            <img src="images/dot.png" width="8">
+            <img src="images/dot.png" width="8">
+            <img src="images/heart.png" width="16">
+            <img src="images/dot.png" width="8">
+            <img src="images/dot.png" width="8">
+            <img src="images/male.png" width="148">
+          </div>
+  
+          <!-- 만나기 시작한 날짜 -->
+          <div class="date-row">
+            <label for="start">시작일</label>
+            <input type="date" name="start" id="start">
+          </div>
+  
+          <!-- 며칠됐는지 계산하기! -->
+          <button id="calculate">결과 보기</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="/dist/all.min.js"></script>
+    <script>
+        $(document).ready(function(){
+          const count = new tr.Counter({
+              targets: {
+                outEl : '#day-count',
+                eventEl: '#calculate'
+              },
+              startdate: '2021-03-31'
+          });
+
+          $('#calculate').on('click', count.dayD);
+        });
+    </script>
+</body>
+</html>
