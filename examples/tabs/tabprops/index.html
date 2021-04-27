@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./reset.css">
     <link rel="stylesheet" href="./app.css">
     <title>tabprops</title>
 </head>
@@ -40,10 +41,11 @@
             You can easily and quickly complete UI by using triplelab resources and jquery resources. 
         */
        (function(){
-            const my = new tr.Tabs({
-                targets: '.tab_js',
+            console.log(tr)
+            const my = new tr.Tabprops({
+                targets: '.triple_tabs .tab_js',
                 addClassName: 'actives',      // 넣고 싶은 클랙스 명
-                firstItemActive: true,        // 첫번째 아이템을 활성화 할건지 여부체크 true or false
+                firstItemActive: true,       // 첫번째 아이템을 활성화 할건지 여부체크 true or false (기본값 false 입니다.)
                 addChild: {
                     findTargets : 'img',
                     prop : 'src',                 // 속성들중에 원하는 속성 이름.
@@ -51,6 +53,7 @@
                     activeValue: './imgs/Group1.png'   // 활성화 하고싶은 경로 넣으세요.
                 }
             });
+
         })();
     </script>
 </body>

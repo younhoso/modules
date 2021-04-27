@@ -69,14 +69,14 @@
     transition: all 0.2s ease-in-out;
  }
 
- .tr_accordion {
-    line-height: 1.1;
-    overflow: hidden;
+ .tr_acc_box {
+   line-height: 1.1;
+   overflow: hidden;
  }
-
- .tr_accordion p {
-    border-top: 2px solid #f0f2f5;
-    padding: 20px;
+ 
+ .tr_acc_box p {
+   border-top: 2px solid #f0f2f5;
+   padding: 20px;
  }
 
  .btn a{

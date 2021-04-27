@@ -35,46 +35,18 @@ export default class Tabprops extends Actives{
 
     /** 특정 조건에만 실행만하는 메소드. */
     initTabprops() {
-        const { targets, firstItemActive, data } = this.el;
-        const domThis = _tr('[data-tr]');
-        const attrName = _tr('[model-tr]');
-        const attrData = JSON.parse(domThis.data('tr'))
+        const { targets, firstItemActive } = this.el;
 
         const handler = (self) => {
             super.unactive(this.current); //클래스 비활성화
             super.active(self); // 클래스 활성화
             this.el.addChild && this.valueChang(self);
         };
-        
+
         _tr(targets).on('click', (e) => {
             e.preventDefault();
             handler(e.currentTarget);
         });
-
-        attrName.on('change', (e) => {
-            const val = _tr(e.target).val();
-            if(val) {
-                domThis.prop('disabled', false)
-            } else {
-                domThis.prop('disabled', attrData.disabled);
-            }
-        });
-        
-        if(data) {
-            for(const key in data()){
-                const attrValue = attrName.attr('model-tr');
-                if(attrValue === key){
-                    attrName.attr('value', data()[key])
-                }
-
-                if(!!data()[key]) {
-                    domThis.prop('disabled', false)
-                } else {
-                    domThis.prop('disabled', attrData.disabled);
-                }
-        
-            } 
-        }
 
         firstItemActive && handler(_tr(targets)[0]);
     }

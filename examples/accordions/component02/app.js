@@ -3,7 +3,7 @@
   new tr.Accordions({
     targets: '.tr_container',
     event: 'click', // 이벤트 mouseenter와, click 2가지를 옵션으로 넣을수 있습니다.
-    firstItemActive: true, // 첫번째 아이템을 활성화 할건지 여부체크 true or false
+    firstItemActive: false, // 첫번째 아이템을 활성화 할건지 여부체크 true or false
     addClassName: 'active',
     //duration: 0.4, // 활성화되는 시간을 컨트롤 할수 있습니다.(기본 값으로 0.4초를 가지고 있습니다.)
     //autoplay: 1000, // 각각의 리스트를 자동으로 플레이를 시키고, 몇초 간격으로 할것인지 설정할수 있습니다.(autoplay property key가 없다면 자동플레이는 실행되지 않는다.)
