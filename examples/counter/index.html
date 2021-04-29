@@ -14,27 +14,10 @@
   
       <div class="main">
         <div class="container">
-          <!-- 만난지 며칠? -->
-          <h2>만난지 <span id="day-count">00</span>일째</h2>
+          <!-- 만난지 며칠 -->
+          <h2>만난지 <span id="day-count">00</span>일째 지남</h2>
+          <h2>만난지 <span id="day-count2">00</span>일째 남음</h2>
   
-          <div class="img-row">
-            <img src="images/female.png" width="148">
-            <img src="images/dot.png" width="8">
-            <img src="images/dot.png" width="8">
-            <img src="images/heart.png" width="16">
-            <img src="images/dot.png" width="8">
-            <img src="images/dot.png" width="8">
-            <img src="images/male.png" width="148">
-          </div>
-  
-          <!-- 만나기 시작한 날짜 -->
-          <div class="date-row">
-            <label for="start">시작일</label>
-            <input type="date" name="start" id="start">
-          </div>
-  
-          <!-- 며칠됐는지 계산하기! -->
-          <button id="calculate">결과 보기</button>
         </div>
     </div>
 
@@ -42,15 +25,17 @@
     <script src="/dist/all.min.js"></script>
     <script>
         $(document).ready(function(){
-          const count = new tr.Counter({
-              targets: {
-                outEl : '#day-count',
-                eventEl: '#calculate'
-              },
-              startdate: '2021-03-31'
+          const count = new tr.Daycounter({
+              startdate: '2021-04-25T17:55:00', // 사작하고자 하는 날짜 및 시간(필수 입력값)
+          });
+          $('#day-count').html(`${count.statDayD()}일, ${count.startDayH()}시간, ${count.startDayM()}분, ${count.startDayS()}초`)
+          
+
+          const count2 = new tr.Daycounter({
+              enddate : '2021-04-30T24:00:00' // 끝나고자 하는 날짜 및 시간(필수 입력값)
           });
 
-          $('#calculate').on('click', count.dayD);
+          $('#day-count2').html(`${count2.endDayD()}일, ${count2.endDayH()}시간, ${count2.endDayM()}분, ${count2.endDayS()}초`)
         });
     </script>
 </body>

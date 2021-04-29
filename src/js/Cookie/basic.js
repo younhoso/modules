@@ -79,13 +79,4 @@ const closeWinAt00 = (winName, expiredays) => {
   obj.style.display = 'none';
 };
 
-const getStartDate = () => {
-  const {startdate} = this.el;
-  return new Date(startdate);
-};
-
-const getCurrentDate = () => {
-  return new Date();
-};
-
-export { openWin, closeWin, closeWinAt00, getStartDate, getCurrentDate };
+export { openWin, closeWin, closeWinAt00 };
