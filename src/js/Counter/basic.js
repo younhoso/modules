@@ -23,18 +23,13 @@ export default class Counter {
         return new Date(this._enddate);
     };
 
-    /** 현재 시점의 날짜를 나타내는 Date 객체를 생성하는 메소드.*/
-    getNowDate() {
-        return new Date();
-    };
-
     /** 시작 기준의 연산 메소드.*/
     starCalculate() {
-        return this.getNowDate() - this.getStartDate
+        return new Date() - this.getStartDate
     }
 
     /** 끝 기준의 연산 메소드.*/
     endCalculate() {
-        return this.getEndDate - this.getNowDate();
+        return this.getEndDate - new Date();
     }
 }

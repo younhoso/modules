@@ -25,23 +25,32 @@
     <script src="/dist/all.min.js"></script>
     <script>
         $(document).ready(function(){
+          
           const count = new tr.Daycounter({
-              startdate: '2021-04-25T17:00:00', // 사작하고자 하는 날짜 및 시간(필수 입력값)
+              startdate: '2021-04-25T24:00:00', // 사작하고자 하는 날짜 및 시간(필수 입력값)
           });
+          
           const timeId1 = function() {
             $('#day-count').html(`${count.statDayD()}일, ${count.startDayH()}시간, ${count.startDayM()}분, ${count.startDayS()}초`)
+            requestAnimationFrame(timeId1);
           };
-          setInterval(timeId1, 1000)
           
+          timeId1();
 
           const count2 = new tr.Daycounter({
               enddate : '2021-04-30T24:00:00' // 끝나고자 하는 날짜 및 시간(필수 입력값)
           });
 
           const timeId2 = function() {
-            $('#day-count2').html(`${count2.endDayD()}일, ${count2.endDayH()}시간, ${count2.endDayM()}분, ${count2.endDayS()}초`)
-          }
-          setInterval(timeId2, 1000)
+            if(count2.endDayM() < 0 && count2.endDayS() < 0){ //이렇게 조건을 사용해서 반복하는 범위도 설정을 해줄수 있다.
+              return false
+            }
+            $('#day-count2').html(`${count2.endDayD()}일, ${count2.endDayH()}시간, ${count2.endDayM()}분, ${count2.endDayS()}초`)  
+            requestAnimationFrame(timeId2);
+          };
+          
+          timeId2();
+
         });
     </script>
 </body>

@@ -3,8 +3,7 @@ import Counter from './basic.js';
 
 export default class Daycounter extends Counter {
     /**
-     * 
-     * @param {*} el 
+     *  @param {Options | object}
      * const count = new tr.Daycounter({
             startdate: '2021-04-25T24:00:00', // 사작하고자 하는 날짜 및 시간(필수 입력값)
             enddate : '2021-04-30T24:00:00'  // 끝나고자 하는 날짜 및 시간(필수 입력값)
