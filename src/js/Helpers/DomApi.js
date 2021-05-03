@@ -1,3 +1,4 @@
+import autoBind from 'auto-bind';
 import $ from 'domtastic';
 
 class DomApi extends $.BaseClass {
@@ -10,6 +11,7 @@ class DomApi extends $.BaseClass {
   constructor(selector) {
     super(selector);
     this.el = selector;
+    autoBind(this);
   }
 
   /**

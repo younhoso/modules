@@ -13,6 +13,7 @@ export default class Actives {
     this.el = el;
     this.current = null;
     this.store = { length: 0, curIdx: 0 };
+    console.log(_tr())
   }
 
   get callback() {

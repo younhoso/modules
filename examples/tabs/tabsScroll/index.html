@@ -52,7 +52,7 @@
           targets: '.tr_tab_nav',
           addClassName: 'actives', // 넣고 싶은 클랙스 명
           menuName : ['Manu1', 'Manu2', 'Manu3', 'Manu4'],
-          firstItemActive: false,
+          firstItemActive: true,
           tabLine: true
         });
 
@@ -86,7 +86,7 @@
             } else {
               $('.tr_tab_nav').removeClass(addClassName);
             }
-        }
+        };
 
 
         $(window).on('load', function(){
