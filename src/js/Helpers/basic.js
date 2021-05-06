@@ -13,7 +13,6 @@ export default class Actives {
     this.el = el;
     this.current = null;
     this.store = { length: 0, curIdx: 0 };
-    console.log(_tr())
   }
 
   get callback() {
@@ -58,7 +57,7 @@ export default class Actives {
     if (loop && this.store.curIdx >= _tr(targets).length) this.store.curIdx = 0; //총 길이보다 크면 다시 0번째로 된다.
     // flase인 경우 (기본적으로 동작) 총 길이보다 크면 1씩 증가시키고, 현재인덱스값을 콜백인자에 전달한다.
     // true인 경우 무한 반복 기능이 취소 된다.
-    this.store.curIdx >= _tr(targets).length ? clearInterval(this.store.timeId) : (callback(this.store.curIdx), (this.store.curIdx += 1));
+    this.store.curIdx >= _tr(targets).length ? clearInterval(this.store.timeId) : ((callback(this.store.curIdx), (this.store.curIdx += 1)));
   }
   /**
    * @type {object, function}

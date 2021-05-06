@@ -20,7 +20,7 @@ export default class Accordions extends Actives {
   constructor(el) {
     super(el);
     this.el = el;
-    this.store = { ele: null, eleSib: null, self: null, targetIdx: null, controlEvent: null, curIdx: 0 };
+    this.store = { ele: null, eleSib: null, self: null, targetIdx: null, controlEvent: null, firstItem: null, curIdx: 0 };
     this.initHandler();
   }
 
@@ -31,7 +31,6 @@ export default class Accordions extends Actives {
    */
   active(item) {
     const { duration } = this.el;
-    super.active(item);
 
     anis(item, duration, { height: 'auto' });
   }
@@ -43,7 +42,6 @@ export default class Accordions extends Actives {
    */
   unactive(item) {
     const { duration } = this.el;
-    super.unactive(item);
 
     this.current && anis(item, duration, { height: '0' });
   }
@@ -56,46 +54,55 @@ export default class Accordions extends Actives {
     this.store.eleSib = items.siblings().find('.tr_acc_box');
     this.store.ele = items.find('.tr_acc_box');
 
-    /**  이벤트 핸들러 함수(즉시 실행) */
-    (() => {
-      items.reduce((acc, cur, idx) => {
-        this.store.targetIdx = idx;
-        cur.addEventListener(event, e => {
-          e.preventDefault(); e.stopPropagation();
-          this.store.controlEvent = true;
+    const setAutoplay = () => {
+      super.autoplay({ targets: this.store.ele, duration: autoplay, loop: loop }, i => {
+        if (this.store.controlEvent) return false;
+        if('additems' in this.el) {
+          // 자동플레이 항목 객수를 제안합니다.
+          additems - 1 >= i && (this.unactive(this.store.eleSib), this.active(this.store.ele[i]))
+        } else {
+          // 자동플레이 항목 객수를 제안하지 않습니다.
+          this.unactive(this.store.eleSib); 
+          this.active(this.store.ele[i]);
+        }
+        
+        // 자동플레이 되면서 addClassName 추가 및 삭제 됩니다.
+        super.unactive(items.siblings()); 
+        super.active(items[i])
+      });
+    }
 
-          const _selfSib = _tr(e.currentTarget).siblings().find('.tr_acc_box');
-          const _self = _tr(e.currentTarget).find('.tr_acc_box');
+    /**  이벤트 핸들러 */
+    items.reduce((acc, cur, idx) => {
+      this.store.targetIdx = idx;
+      cur.addEventListener(event, e => {
+        e.preventDefault(); e.stopPropagation();
+        this.store.controlEvent = true;
 
-          this.unactive(_selfSib);
-          this.active(_self);
-        });
-      }, 0);
+        const _selfSib = _tr(e.currentTarget).siblings().find('.tr_acc_box');
+        const _self = _tr(e.currentTarget).find('.tr_acc_box');
 
-      if ('autoplay' in this.el) {
-        this.store.eleSib.css('height', 0);
-        super.autoplay({ targets: this.store.ele, duration: autoplay, loop: loop }, i => {
-          if (this.store.controlEvent) return false;
-          if('additems' in this.el) {
-            // 자동플레이 항목 객수를 제안합니다.
-            additems - 1 >= i && (this.unactive(this.store.eleSib), this.active(this.store.ele[i]))
-          } else {
-            // 자동플레이 항목 객수를 제안하지 않습니다.
-            this.unactive(this.store.eleSib); 
-            this.active(this.store.ele[i]);
-          }
-        });
-      } else {
-        this.store.curIdx = 0;
-      }
+        this.unactive(_selfSib);
+        this.active(_self);
 
-      if (firstItemActive) {
-        this.store.eleSib.css('height', 0);
-        this.active(this.store.ele[0]);
-        this.store.curIdx += 1;
-      } else {
-        this.store.eleSib.css('height', 0);
-      }
-    })();
+        super.unactive(_tr(e.currentTarget).siblings());
+        super.active(e.currentTarget);
+      });
+    }, 0);
+
+    if ('autoplay' in this.el) {
+      this.store.eleSib.css('height', 0);
+      setAutoplay();
+    } else {
+      this.store.curIdx = 0;
+    }
+
+    if (firstItemActive) {
+      this.active(this.store.ele[0]);
+      // console.log(this.current)
+      this.store.eleSib.css('height', 0);
+    } else {
+      this.store.eleSib.css('height', 0);
+    }
   }
 }
