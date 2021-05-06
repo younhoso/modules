@@ -20,8 +20,20 @@ export default class Accordions extends Actives {
   constructor(el) {
     super(el);
     this.el = el;
-    this.store = { ele: null, eleSib: null, self: null, targetIdx: null, controlEvent: null, firstItem: null, curIdx: 0 };
+    this.store = { ele: null, eleSib: null, self: null, controlEvent: null, firstItem: null, curIdx: 0 };
+    this.autoplay = el;
     this.initHandler();
+  }
+
+  get autoplay() {
+    return this._autoplay;
+  }
+
+  set autoplay(value) {
+    const {firstItemActive} = this.el;
+    if(value.autoplay && firstItemActive){
+      throw Error('The autoplay and firstItemActive options cannot be activated together. To run autoplay, you need to do firstItemActive: false.');
+    }
   }
 
   /**
@@ -33,6 +45,7 @@ export default class Accordions extends Actives {
     const { duration } = this.el;
 
     anis(item, duration, { height: 'auto' });
+    this.current = _tr(item)
   }
 
   /**
@@ -73,8 +86,7 @@ export default class Accordions extends Actives {
     }
 
     /**  이벤트 핸들러 */
-    items.reduce((acc, cur, idx) => {
-      this.store.targetIdx = idx;
+    items.reduce((acc, cur) => {
       cur.addEventListener(event, e => {
         e.preventDefault(); e.stopPropagation();
         this.store.controlEvent = true;
@@ -97,12 +109,7 @@ export default class Accordions extends Actives {
       this.store.curIdx = 0;
     }
 
-    if (firstItemActive) {
-      this.active(this.store.ele[0]);
-      // console.log(this.current)
-      this.store.eleSib.css('height', 0);
-    } else {
-      this.store.eleSib.css('height', 0);
-    }
+    firstItemActive && (this.active(this.store.ele[0]), this.store.eleSib.css('height', 0));
+    this.store.eleSib.css('height', 0);
   }
 }
