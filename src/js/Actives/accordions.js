@@ -7,13 +7,12 @@ export default class Accordions extends Actives {
     * @param {Options | object}
     * @example
     * new tr.Accordions ({
-        targets: '.item',
+        targets: '.tr_container',
         event: 'click', // 이벤트 mouseenter와, click 2가지를 옵션으로 넣을수 있습니다.
-        firstItemActive: true, // 첫번째 아이템을 활성화 할건지 여부체크 true or false
         addClassName: 'active',
-        duration: 0.4, // 활성화되는 시간을 컨트롤 할수 있습니다.(기본 값으로 0.4초를 가지고 있습니다.)
-        autoplay: 1000, // 각각의 리스트를 자동으로 플레이를 시키고, 몇초 간격으로 할것인지 설정할수 있습니다.(autoplay property key가 없다면 자동플레이는 실행되지 않는다.)
-        additems: 5, // 자동플레이 항목 객수를 제안 할수 있습니다.
+        firstItemActive: false, // 첫번째 아이템을 활성화 할건지 여부체크 true or false (기본 값으로 false)
+        duration: 0.5, // 활성화되는 시간을 컨트롤 할수 있습니다.(기본 값으로 0.4초를 가지고 있습니다.)
+        autoplay: true, // 각각의 리스트를 자동으로 플레이를 시킬지 여부체크 true or false (기본 값으로 false)
         loop: false, // autoplay를 무한 반복 시킬것인지 여부체크 true or false (기본 값으로 false)
       });
     */
@@ -61,23 +60,17 @@ export default class Accordions extends Actives {
 
   /** 특정 조건에만 실행하는 메소드. */
   initHandler() {
-    const { targets, event, firstItemActive, autoplay, additems, loop } = this.el;
+    const { targets, event, firstItemActive, autoplay, loop } = this.el;
 
     const items = _tr(targets).find('.tr_item');
     this.store.eleSib = items.siblings().find('.tr_acc_box');
     this.store.ele = items.find('.tr_acc_box');
-
+   
     const setAutoplay = () => {
-      super.autoplay({ targets: this.store.ele, duration: autoplay, loop: loop }, i => {
+      autoplay && super.autoplay({ targets: this.store.ele, duration: 1000, loop: loop }, i => {
         if (this.store.controlEvent) return false;
-        if('additems' in this.el) {
-          // 자동플레이 항목 객수를 제안합니다.
-          additems - 1 >= i && (this.unactive(this.store.eleSib), this.active(this.store.ele[i]))
-        } else {
-          // 자동플레이 항목 객수를 제안하지 않습니다.
-          this.unactive(this.store.eleSib); 
-          this.active(this.store.ele[i]);
-        }
+        this.unactive(this.store.eleSib)
+        this.active(this.store.ele[i])
         
         // 자동플레이 되면서 addClassName 추가 및 삭제 됩니다.
         super.unactive(items.siblings()); 

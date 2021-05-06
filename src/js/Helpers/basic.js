@@ -12,7 +12,7 @@ export default class Actives {
   constructor(el) {
     this.el = el;
     this.current = null;
-    this.store = { length: 0, curIdx: 0 };
+    this.store = { length: 0, curIdx: 0, timeId: 0 };
   }
 
   get callback() {
@@ -48,8 +48,8 @@ export default class Actives {
     this.current && _tr(item).removeClass(addClassName); //기본적인 class 삭제 기능
   }
 
-  /** index 무한 반복 메소드. */
   /**
+   * index 무한 반복 메소드.
    * @type {DOM, boolean, function}
    * @param {Element, loop, callback }
    */
@@ -60,6 +60,7 @@ export default class Actives {
     this.store.curIdx >= _tr(targets).length ? clearInterval(this.store.timeId) : ((callback(this.store.curIdx), (this.store.curIdx += 1)));
   }
   /**
+   * 자동 재생 메소드.
    * @type {object, function}
    * @param {options, callback}
    * @example
