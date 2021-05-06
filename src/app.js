@@ -5,9 +5,6 @@ import Tabs from '@/js/Actives/tabs';
 import Tabprops from '@/js/Actives/tabprops';
 import ToggleDynamic from '@/js/Actives/toggleDynamic';
 
-// Breakpoints
-import BreakPoints from '@/js/Breakpoints/app';
-
 // Cookie
 import selfCookie from '@/js/Cookie/selfCookie';
 import otherCookie from '@/js/Cookie/otherCookie';
@@ -37,7 +34,6 @@ export {
   Tabs,
   Tabprops,
   ToggleDynamic,
-  BreakPoints,
   comma,
   unComma,
   inputCommaSet,
