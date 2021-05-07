@@ -36,6 +36,7 @@ export default class Actives {
 
     _tr(item).addClass(addClassName); //기본적인 class 추가 기능
     this.current = _tr(item);
+    return this;
   }
   /**
    * 비활성화 관한 메소드
@@ -46,6 +47,7 @@ export default class Actives {
     const { addClassName } = this.el;
 
     this.current && _tr(item).removeClass(addClassName); //기본적인 class 삭제 기능
+    return this;
   }
 
   /**
@@ -58,6 +60,7 @@ export default class Actives {
     // flase인 경우 (기본적으로 동작) 총 길이보다 크면 1씩 증가시키고, 현재인덱스값을 콜백인자에 전달한다.
     // true인 경우 무한 반복 기능이 취소 된다.
     this.store.curIdx >= _tr(targets).length ? clearInterval(this.store.timeId) : ((callback(this.store.curIdx), (this.store.curIdx += 1)));
+    return this;
   }
   /**
    * 자동 재생 메소드.
@@ -76,6 +79,7 @@ export default class Actives {
     const autos = () => {
       this.#indexLoop(targets, loop, callback);
     };
-    this.store.timeId = setInterval(autos, duration);
+    this.store.timeId = setInterval(autos, (1000 * duration));
+    return this;
   }
 }
