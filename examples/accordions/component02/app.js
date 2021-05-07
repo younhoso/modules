@@ -2,13 +2,16 @@
   console.log(tr);
   new tr.Accordions({
     targets: '.tr_container',
-    event: 'click', // 이벤트 mouseenter와, click 2가지를 옵션으로 넣을수 있습니다.
-    firstItemActive: false, // 첫번째 아이템을 활성화 할건지 여부체크 true or false
-    addClassName: 'active',
-    //duration: 0.4, // 활성화되는 시간을 컨트롤 할수 있습니다.(기본 값으로 0.4초를 가지고 있습니다.)
-    //autoplay: 1000, // 각각의 리스트를 자동으로 플레이를 시키고, 몇초 간격으로 할것인지 설정할수 있습니다.(autoplay property key가 없다면 자동플레이는 실행되지 않는다.)
-    additems: 5, // 자동플레이 항목 객수를 제안 할수 있습니다.
+    firstItemActive: true, // 첫번째 아이템을 활성화 할건지 여부체크 true or false (기본 값으로 false)
+    duration: 0.8, // 활성화되는 시간을 컨트롤 할수 있습니다.(기본 값으로 0.4초를 가지고 있습니다.)
+    autoplay: false, // 각각의 리스트를 자동으로 플레이를 시킬지 여부체크 true or false (기본 값으로 false)
     loop: false, // autoplay를 무한 반복 시킬것인지 여부체크 true or false (기본 값으로 false)
+    eventClick(e){  // 이벤트 클릭에 콜백 정의 (필수 입력값입니다.)
+      const _selfSib = $(e.currentTarget).siblings().find('.tr_acc_box');
+      const _self = $(e.currentTarget).find('.tr_acc_box');
+      this.unactive(_selfSib); // height: 0의 스타일 정의되어 있습니다. 인자로 비활성화 시킬 target나머지 들을 넣으세요.
+      this.active(_self); // height: 'auto'의 스타일 정의되어 있습니다. 인자로 활성화 시킬 target을 넣으세요.
+    }
   });
 
   new tr.Ratio({

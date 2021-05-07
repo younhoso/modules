@@ -75,6 +75,7 @@
  .faq_item_content p {
    border-top: 2px solid #f0f2f5;
    padding: 20px;
+   margin: 0;
  }
 
  .btn a{
