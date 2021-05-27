@@ -83,7 +83,6 @@ export default class Accordions extends Actives {
     /**  이벤트 핸들러 */
     items.reduce((acc, cur) => {
       cur.addEventListener('click', (e) => {
-        e.preventDefault(); e.stopPropagation();
         this.store.controlEvent = true;
         this.eventClick(e);
       });

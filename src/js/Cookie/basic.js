@@ -79,4 +79,4 @@ const closeWinAt00 = (winName, expiredays) => {
   obj.style.display = 'none';
 };
 
-export { openWin, closeWin, closeWinAt00 };
+export { setCookieAt00, openWin, closeWin, closeWinAt00 };

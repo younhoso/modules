@@ -14,7 +14,7 @@
                 <a href="#0"><img class="thumb" src="./images/pop1.jpg" alt="popup"/></a>
                 <div class="close">
                     <span class="inpus"> 
-                        <input type='checkbox' id="c1" class="check"/>
+                        <input type='checkbox' id="c1" class="check1"/>
                         <label for="c1">1일 동안 보지 않기</label>
                     </span>
                     <span class="closeed1"> <a href="#0">닫기</a></span>
@@ -29,10 +29,10 @@
                 <a href="#0"><img class="thumb" src="./images/pop3.jpg" alt="popup"/></a>
                 <div class="close">
                     <span class="inpus"> 
-                        <input type='checkbox' id="c" class="check"/>
+                        <input type='checkbox' id="c" class="check2"/>
                         <label for="c">3일 동안 보지 않기</label>
                     </span>
-                    <span class="closeed3"> <a href="#0">닫기</a></span>
+                    <span class="closeed2"> <a href="#0">닫기</a></span>
                 </div>
             </div>
         </div>
@@ -41,27 +41,34 @@
     <script src="../../../dist/cookie.min.js"></script>
     <script>
         (function(){
-            console.log(tr)
             new tr.otherCookie({
-                targets: {                          // otherCookie 메서드인 경우 startEl, endEl, eventEl 있어야 합니다.
-                    startEl: '.close_inner-js',
-                    endEl: '.check', 
+                targets: {                          // otherCookie 메서드인 경우 eventEl 있어야 합니다. ('닫기' element)
                     eventEl:'.closeed1'
                 },
-                cookiename: 'SetCookie1',           // 쿠키의 전체 영역을 가르치는 id값와 같아야 합니다.
-                daying: 1                          // 오늘 하루 안보기의 (1 day) 정오 00:00 시 기준입니다.
+                cookienameID: 'SetCookie1',         // 쿠키의 전체 영역을 가르치는 id값와 같아야 합니다.
+                daying: 1,                          // 오늘 하루 안보기의 (1 day) 정오 00:00 시 기준입니다.
+                eventClick:function(evt){
+                    const inputCheck = document.querySelector('.check1');
+                    if(inputCheck.checked) {        /** 오늘 하루동안 보지 않기 체크하면, closeWinAt00(1 day) 정오 00:00 시 기준입니다. */
+                        this.closeWinAt00(1);
+                    }
+                }
             });
 
             new tr.otherCookie({
-                targets: {                          // otherCookie 메서드인 경우 startEl, endEl, eventEl 있어야 합니다.
-                    startEl: '.close_inner-js',
-                    endEl: '.check', 
-                    eventEl:'.closeed3'
+                targets: {                          // otherCookie 메서드인 경우 eventEl 있어야 합니다.('닫기' element)
+                    eventEl:'.closeed2'
                 },
-                cookiename: 'SetCookie2',           // 쿠키의 전체 영역을 가르치는 id값와 같아야 합니다.
-                daying: 3,                          // 오늘 하루 안보기의 (1 day) 정오 00:00 시 기준입니다.
+                cookienameID: 'SetCookie2',         // 쿠키의 전체 영역을 가르치는 id값와 같아야 합니다.
+                daying: 3,                          // 오늘 하루 안보기의 (3 day) 정오 00:00 시 기준입니다.
                 startdate: '2021/02/01 10:00:00',   // 시작하는 날짜와 시간
-                enddate: '2021/02/10 20:01:00',     // 끝나는 날짜와 시간
+                enddate: '2021/06/26 20:01:00',     // 끝나는 날짜와 시간
+                eventClick:function(evt){
+                    const inputCheck = document.querySelector('.check2');
+                    if(inputCheck.checked) { /** 오늘 하루동안 보지 않기 체크하면, closeWinAt00(3 day) 정오 00:00 시 기준입니다. */
+                        this.closeWinAt00(3);
+                    }
+                }
             });
 
         })();
