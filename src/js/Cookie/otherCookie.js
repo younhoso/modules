@@ -43,7 +43,6 @@ export default class otherCookie extends Cookie {
         }
       });
     
-    startdate && enddate ? super.cookieNameAdd(cookienameID) : openWinCookie(cookienameID);
-    dataKey && dataAttrCookie(cookienameID, dataKey);
+    startdate && enddate ? super.cookieNameAdd(cookienameID) : (openWinCookie(cookienameID), dataKey && dataAttrCookie(cookienameID, dataKey));
   }
 }
