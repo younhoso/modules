@@ -42,33 +42,24 @@
     <script>
         (function(){
             new tr.otherCookie({
-                targets: {                          // otherCookie 메서드인 경우 eventEl 있어야 합니다. ('닫기' element)
-                    eventEl:'.closeed1'
+                targets: {
+                    checkEl: '.check1',             // 필수 값
+                    eventEl:'.closeed1'             // 필수 값
                 },
                 cookienameID: 'SetCookie1',         // 쿠키의 전체 영역을 가르치는 id값와 같아야 합니다.
+                dataKey: 'darks',                   // 엘리먼트 요소에 'data-'요소로 들어가는 key값과 동일하게 넣어주세요.
                 daying: 1,                          // 오늘 하루 안보기의 (1 day) 정오 00:00 시 기준입니다.
-                eventClick:function(evt){
-                    const inputCheck = document.querySelector('.check1');
-                    if(inputCheck.checked) {        /** 오늘 하루동안 보지 않기 체크하면, closeWinAt00(1 day) 정오 00:00 시 기준입니다. */
-                        this.closeWinAt00(1);
-                    }
-                }
             });
 
             new tr.otherCookie({
-                targets: {                          // otherCookie 메서드인 경우 eventEl 있어야 합니다.('닫기' element)
-                    eventEl:'.closeed2'
+                targets: {
+                    checkEl: '.check2',             // (필수 값)
+                    eventEl:'.closeed2'             // (필수 값)
                 },
-                cookienameID: 'SetCookie2',         // 쿠키의 전체 영역을 가르치는 id값와 같아야 합니다.
-                daying: 3,                          // 오늘 하루 안보기의 (3 day) 정오 00:00 시 기준입니다.
-                startdate: '2021/02/01 10:00:00',   // 시작하는 날짜와 시간
-                enddate: '2021/06/26 20:01:00',     // 끝나는 날짜와 시간
-                eventClick:function(evt){
-                    const inputCheck = document.querySelector('.check2');
-                    if(inputCheck.checked) { /** 오늘 하루동안 보지 않기 체크하면, closeWinAt00(3 day) 정오 00:00 시 기준입니다. */
-                        this.closeWinAt00(3);
-                    }
-                }
+                cookienameID: 'SetCookie2',         // 쿠키의 전체 영역을 가르치는 id값와 같아야 합니다. (필수 값)
+                daying: 3,                          // 오늘 하루 안보기의 (3 day) 정오 00:00 시 기준입니다.(기본값 1일(옵션한 값))
+                startdate: '2021/02/01 10:00:00',   // 시작하는 날짜와 시간 (옵션한 값)
+                enddate: '2021/06/02 20:01:00'      // 끝나는 날짜와 시간 (옵션한 값)
             });
 
         })();

@@ -1,5 +1,6 @@
+import Cookies from 'js-cookie';
 import { _tr } from '../Helpers/DomApi.js';
-import { openWin, closeWinAt00 } from './basic.js';
+import { openWinCookie, dataAttrCookie } from './basic.js';
 import Cookie from './app.js';
 
 export default class selfCookie extends Cookie {
@@ -8,44 +9,33 @@ export default class selfCookie extends Cookie {
      * @type {object}
      * @param {*}
      * @example 
-     *  tr.Cookie.selfCookie({
-            targets: {                          // selfCookie 메서드인 경우 eventEl만 있으면 됩니다.
-                eventEl:'.closeed1'             
-            },
-            cookiename: 'SetCookie0',           // 쿠키의 전체 영역을 가르치는 id값와 같아야 합니다.
-            daying: 1,                          // 오늘 하루 안보기의 (3 day) 정오 00:00 시 기준입니다.
-            startdate: '2021/01/16 23:05:00',   // 시작하는 날짜와 시간
-            enddate: '2021/12/19 23:45:00',     // 끝나는 날짜와 시간
-        });
-
-        tr.Cookie.selfCookie({
-            targets: {
-                eventEl:'.closeed2'
-            },
-            cookiename: 'SetCookie1',           // 쿠키의 전체 영역을 가르치는 id값와 같아야 합니다.
-            daying: 1                           // 오늘 하루 안보기의 (1 day) 정오 00:00 시 기준입니다.
-        });
+     * const myc01 = new tr.selfCookie({
+          eventEl:'.closeed1'                 // 이벤트 타켓(필수 값)
+          cookienameID: 'SetCookie1',         // 쿠키의 전체 영역을 가르치는 id값와 같아야 합니다. (필수 값)
+          daying: 4,                          // 오늘 하루 안보기의 (2 day) 정오 00:00 시 기준입니다. (기본값 1일(옵션한 값))
+          dataKey: 'darks',                   // 엘리먼트 요소에 'data-'요소로 들어가는 key값과 동일하게 넣어주세요.(옵션한 값))
+          startdate: '2021/02/01 10:00:00',   // 시작하는 날짜와 시간 (옵션한 값)
+          enddate: '2021/06/02 20:00:00',     // 끝나는 날짜와 시간 (옵션한 값)
+      });
     */
   constructor(el) {
     super(el);
     this.el = el;
-    this.store = { idx: null, current: null };
+    this.store = { current: null };
     this.selfCookie();
   }
   /** 자기 자신의 쿠키 메소드. */
   selfCookie() {
-    const { cookiename, daying, startdate, enddate } = this.el;
-    const { eventEl } = this.el.targets;
-
+    const { cookienameID, dataKey, daying = 1, startdate, enddate } = this.el;
+    const { eventEl } = this.el;
     const eventEls = document.querySelector(eventEl);
+
     eventEls.addEventListener('click', e => {
-      // closeEvent 설정
-      e.preventDefault();
-      e.stopPropagation();
-      this.store.idx = _tr(eventEl).indexOf(e.currentTarget);
-      closeWinAt00(cookiename, daying); // closeWinAt00('아이디', 하루) 정오 00:00 시 기준입니다.
+      Cookies.set(cookienameID, 'done', { expires: daying })
+      openWinCookie(cookienameID)
+      dataAttrCookie(cookienameID, dataKey);
     });
 
-    startdate && enddate ? super.cookieNameAdd(cookiename) : openWin(cookiename); // startdate && enddate는 값이 존재하냐 안 하냐에 따라서 Boolean으로 사용한다.
+    startdate && enddate ? super.cookieNameAdd(cookienameID) : (openWinCookie(cookienameID), dataKey && dataAttrCookie(cookienameID, dataKey)); // startdate && enddate는 값이 존재하냐 안 하냐에 따라서 Boolean으로 사용한다.
   }
 }

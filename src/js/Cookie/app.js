@@ -1,5 +1,5 @@
 import { _tr } from '../Helpers/DomApi.js';
-import { openWin } from './basic.js';
+import { openWinCookie, dataAttrCookie } from './basic.js';
 
 export default class Cookie {
   constructor(el) {
@@ -12,14 +12,15 @@ export default class Cookie {
    * @param {string}
    */
   cookieNameAdd(cookiename) {
-    const { startdate, enddate } = this.el;
+    const { dataKey, startdate, enddate } = this.el;
     this.store.sdate = new Date(startdate);
     this.store.edate = new Date(enddate);
     const { sdate, edate } = this.store;
 
     if (Date.now() >= sdate && Date.now() <= edate) {
       /** 현재 (시작날짜, 끝날짜) 모두 비교해여 만족하면 활성화되는 조건 */
-      openWin(cookiename);
+      cookiename && openWinCookie(cookiename);
+      dataKey && dataAttrCookie(cookiename, dataKey);
     }
   }
 }
