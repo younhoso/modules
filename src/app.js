@@ -10,7 +10,8 @@ import selfCookie from '@/js/Cookie/selfCookie';
 import otherCookie from '@/js/Cookie/otherCookie';
 
 // Counter
-import Daycounter from '@/js/Counter/Daycounter';
+import Daycounter from '@/js/Counter/daycounter';
+import Timecounter from '@/js/Counter/timecounter';
 
 // Custom
 import Motion from '@/js/Custom/app';
@@ -45,6 +46,7 @@ export {
   selfCookie,
   otherCookie,
   Daycounter,
+  Timecounter,
   Motion,
   Item,
   Ratio,

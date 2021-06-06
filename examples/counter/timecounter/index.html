@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./app.css">
 </head>
 <body>
-    <div id="SetCookie1" style="display: none;" data-size="false">
+    <div class="set" data-dark="false">
         <div class="content">
             <div class="content_inner">
                 <a href="#0"><img class="thumb" src="./images/pop1.png" alt="popup"/></a>
@@ -22,18 +22,15 @@
         </div>
     </div>
 
-    <script src="../../../dist/cookie.min.js"></script>
+    <script src="/dist/counter.min.js"></script>
     <script>
         (function(){
             console.log(tr)
-
-            const myc01 = new tr.selfCookie({
-                eventEl:'.closeed1',                  // selfCookie 메서드인 경우 eventEl만 있으면 됩니다.
-                cookienameID: 'SetCookie1',           // 쿠키의 전체 영역을 가르치는 id값와 같아야 합니다.
-                dataKey: 'size',
-                daying: 1,                            // 오늘 하루 안보기의 (2 day) 정오 00:00 시 기준입니다.
-                startdate: '2021/05/01 05:00:00',     // 시작하는 날짜와 시간
-                enddate: '2021/06/04 15:00:00',       // 끝나는 날짜와 시간
+            const myc01 = new tr.Timecounter({
+                targets: '.set',
+                dataKey: 'dark',
+                startTime: '09:00',     // 시작하는 날짜와 시간
+                endTime: '17:00',       // 끝나는 날짜와 시간
             });
 
         })();

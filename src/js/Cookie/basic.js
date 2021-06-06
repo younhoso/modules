@@ -15,13 +15,13 @@ const openWinCookie = winName => {
   }
 };
 
-const dataAttrCookie = (winName, dataVal) => {
+const dataAttrCookie = (winName, dataVal, val = 'false') => {
   const blnCookie = Cookies.get(winName);
   const obj = (new Function('return window.' + winName))();
 
   if (!blnCookie) {
-    /**  이것이 DOM에 block, none을 Refresh시에도 유지시켜줍니다. */
-    obj.dataset[dataVal] = 'true';
+    /**  이것이 DOM에 true, false을 Refresh시에도 유지시켜줍니다. */
+    obj.dataset[dataVal] = val;
   }
 }
 

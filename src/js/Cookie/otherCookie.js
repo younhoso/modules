@@ -16,8 +16,8 @@ export default class otherCookie extends Cookie {
             cookienameID: 'SetCookie2',         // 쿠키의 전체 영역을 가르치는 id값와 같아야 합니다. (필수 값)
             daying: 3,                          // 오늘 하루 안보기의 (3 day) 정오 00:00 시 기준입니다.(기본값 1일(옵션한 값))
             dataKey: 'darks',                   // 엘리먼트 요소에 'data-'요소로 들어가는 key값과 동일하게 넣어주세요.(옵션한 값))
-            startdate: '2021/02/01 10:00:00',   // 시작하는 날짜와 시간 (옵션한 값)
-            enddate: '2021/06/02 20:01:00'      // 끝나는 날짜와 시간 (옵션한 값)
+            startdate: '2021/02/01',   // 시작하는 날짜와 시간 (옵션한 값)
+            enddate: '2021/06/02'      // 끝나는 날짜와 시간 (옵션한 값)
         });
      * 
     */
