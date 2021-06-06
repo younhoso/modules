@@ -25,17 +25,17 @@ export default class Timecounter extends Counter {
      setTimeAdd(){
         const { dataKey, startTime, endTime } = this.el;
         const now = new Date();
-        let nowHour = now.getHours();
-        let nowMinutes = now.getMinutes();
+        const nowHour = now.getHours();
+        const nowMinutes = now.getMinutes();
 
         const stoar = new Date(`${now.toLocaleDateString()} ${startTime}`); //사용자로부터 시간을 설정 받는다. 
         const etoar = new Date(`${now.toLocaleDateString()} ${endTime}`); //사용자로부터 시간을 설정 받는다.
 
-        let shour = stoar.getHours(); 
-        let sMinutes = stoar.getMinutes(); 
+        const shour = stoar.getHours(); 
+        const sMinutes = stoar.getMinutes(); 
 
-        let ehour = etoar.getHours();
-        let eMinutes = etoar.getMinutes();
+        const ehour = etoar.getHours();
+        const eMinutes = etoar.getMinutes();
 
         if((nowHour >= shour && nowHour < ehour)){
             if((nowMinutes >= sMinutes) && ((nowMinutes <= eMinutes) || (nowMinutes >= eMinutes))) {
