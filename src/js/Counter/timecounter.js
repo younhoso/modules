@@ -37,7 +37,7 @@ export default class Timecounter extends Counter {
         let ehour = etoar.getHours();
         let eMinutes = etoar.getMinutes();
 
-        if((nowHour >= shour && nowHour <= ehour)){
+        if((nowHour >= shour && nowHour < ehour)){
             if((nowMinutes >= sMinutes) && ((nowMinutes <= eMinutes) || (nowMinutes >= eMinutes))) {
                 console.log("다크 모드 시작")
                 this.dataAttrSet(dataKey, 'true');
