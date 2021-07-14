@@ -2,7 +2,6 @@ import { _tr } from '../Helpers/DomApi.js';
 import { anis } from '../Helpers/common.js';
 import Actives from '../Helpers/basic.js';
 
-
 export default class Accordions extends Actives {
   /**
     * @param {Options | object}
