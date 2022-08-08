@@ -5,7 +5,7 @@ ES6의 class기반으로 만들었고, 공부하는 차원으로 만들었습니
 ## ⚒️개발 스팩
 ![](https://img.shields.io/badge/webpack-8dd6f9?style=for-the-badge&logo=webpack&logoColor=black)
 ![](https://img.shields.io/badge/Javascript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black)
-![](https://img.shields.io/badge/scss-ff4154?style=for-the-badge&logo=scss&logoColor=white)
+![](https://img.shields.io/badge/scss-ff4154?style=for-the-badge&logo=sass&logoColor=white)
 
 ## Getting Started With triplexlab
 
