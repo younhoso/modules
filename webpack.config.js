@@ -12,10 +12,10 @@ module.exports = {
         },
     },
     entry: {
-      app: [
-        '@babel/polyfill',
-        path.join(__dirname, '/src/app.js')
-      ]
+      "all.min": ['@babel/polyfill', path.join(__dirname, '/src/app.js')],
+      "Actives.min": ['@babel/polyfill', path.join(__dirname, '/src/js/Actives/index.js')],
+      "MoreViews.min": ['@babel/polyfill', path.join(__dirname, '/src/js/MoreViews/index.js')],
+      "Counter.min": ['@babel/polyfill', path.join(__dirname, '/src/js/Counter/index.js')],
     },
     module: {
         rules: [

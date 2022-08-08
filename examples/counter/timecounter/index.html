@@ -4,35 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./app.css">
 </head>
 <body>
-    <div class="set" data-dark="false">
+    <div class="set" data-dark="false"> <!-- data-dark의 상태를 나타내는곳 -->
         <div class="content">
             <div class="content_inner">
                 <a href="#0"><img class="thumb" src="./images/pop1.png" alt="popup"/></a>
-                <div class="close">
-                    <span class="item inpus"> 
-                        <input type='checkbox' id="a"/>
-                        <label for="a">2일 동안 보지 암음</label>
-                    </span>
-                    <span class="item closeed1"> <a href="#0">닫기</a></span> 
+                <div class="txt">
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="/dist/counter.min.js"></script>
+    <script src="/dist/Counter.min.js"></script>
     <script>
         (function(){
             console.log(tr)
+            const txt = document.querySelector('.txt');
+            const set = document.querySelector('.set');
+
             const myc01 = new tr.Timecounter({
                 targets: '.set',
+                endTargets: '.txt',
                 dataKey: 'dark',
-                startTime: '09:00',     // 시작하는 날짜와 시간
-                endTime: '18:00',       // 끝나는 날짜와 시간
+                startTime: '09:00',     // 시작하는 시간
+                endTime: '15:00',       // 끝나는 시간
+                template: function(state){
+                    if(state){
+                        return `<p>지금은 다크모드</p>`
+                    } else {
+                        return `<p>지금은 라이트모드</p>`
+                    }
+                }
             });
 
+            
         })();
     </script>
 </body>

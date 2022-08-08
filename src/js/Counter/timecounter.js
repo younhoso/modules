@@ -12,11 +12,17 @@ export default class Timecounter extends Counter {
         this.setTimeAdd();
     };
 
+    defaultload(state){
+        const {endTargets, template} = this.el;
+        const el = document.querySelector(endTargets);
+        el.innerHTML = template(state)
+    }
+
     dataAttrSet(dataVal, val = 'false'){
         const { targets } = this.el;
         const el = document.querySelector(targets);
         el.dataset[dataVal] = val;
-    }
+    };
 
     /**
      * setTimeAdd 옵션값 startTime, endTime 값이 있을경우에 사용되는 메소드.
@@ -39,15 +45,15 @@ export default class Timecounter extends Counter {
 
         if((nowHour >= shour && nowHour < ehour)){
             if((nowMinutes >= sMinutes) && ((nowMinutes <= eMinutes) || (nowMinutes >= eMinutes))) {
-                console.log("다크 모드 시작")
-                this.dataAttrSet(dataKey, 'true');
+                this.dataAttrSet(dataKey, true);
+                this.defaultload(true)
             } else {
-                console.log("라이트 모드 시작") 
-                this.dataAttrSet(dataKey, 'false');
+                this.dataAttrSet(dataKey, false);
+                this.defaultload(false)
             }
         } else {
-            console.log("라이트 모드 시작") 
-            this.dataAttrSet(dataKey, 'false');
+            this.dataAttrSet(dataKey, false);
+            this.defaultload(false)
         }
     }
 }
