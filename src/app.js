@@ -1,18 +1,14 @@
 /** js import ST */
 // Actives
-import Accordions from '@/js/Actives/accordions';
+import Accordions from '@/js/Actives/accordions'; 
 import Tabs from '@/js/Actives/tabs';
 import Tabprops from '@/js/Actives/tabprops';
 import ToggleDynamic from '@/js/Actives/toggleDynamic';
 
-// Cookie
-import selfCookie from '@/js/Cookie/selfCookie';
-import otherCookie from '@/js/Cookie/otherCookie';
-
 // Counter
 import Daycounter from '@/js/Counter/daycounter';
 import Timecounter from '@/js/Counter/timecounter';
-
+ 
 // Custom
 import Motion from '@/js/Custom/app';
 
@@ -43,8 +39,6 @@ export {
   dataFilter,
   dataArray,
   DetectIE,
-  selfCookie,
-  otherCookie,
   Daycounter,
   Timecounter,
   Motion,
