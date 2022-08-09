@@ -4,7 +4,25 @@ import Counter from './basic.js';
 export default class Timecounter extends Counter {
     /**
      *  @param {Options | object}
-     * 
+     * (function(){
+            const txt = document.querySelector('.txt');
+            const set = document.querySelector('.set');
+
+            const myc01 = new tr.Timecounter({
+                targets: '.set',
+                endTargets: '.txt',
+                dataKey: 'dark',
+                startTime: '09:00',     // 시작하는 시간
+                endTime: '15:00',       // 끝나는 시간
+                template: function(state){
+                    if(state){
+                        return `<p>지금은 다크모드</p>`
+                    } else {
+                        return `<p>지금은 라이트모드</p>`
+                    }
+                }
+            });
+        })();
      */
     constructor(el) {
         super(el)
