@@ -1,13 +1,13 @@
 {
-  "name": "triplexlab-modules",
-  "version": "1.0.0",
+  "name": "triplexlab",
+  "version": "1.3.3",
   "description": "",
   "main": "index.js",
   "scripts": {
     "prod": "webpack --mode=production",
     "watch": "webpack --mode=development --watch"
   },
-  "keywords": [],
+  "keywords": ["triplexlab", "module", "JavaScript-es6", "animate", "actives", "tabs", "accordions"],
   "author": "",
   "license": "MIT",
   "devDependencies": {
